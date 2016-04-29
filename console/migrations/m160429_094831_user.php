@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m160429_093437_init extends Migration
+class m160429_094831_user extends Migration
 {
     public function up()
     {
@@ -12,7 +12,7 @@ class m160429_093437_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%test_user}}', [
+        $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
@@ -33,6 +33,6 @@ class m160429_093437_init extends Migration
 
     public function down()
     {
-        $this->dropTable('{{%test_user}}');
+        $this->dropTable('{{%user}}');
     }
 }
