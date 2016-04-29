@@ -8,4 +8,5 @@
 
 return [
     'test'=>'测试',
+    'testyii2mall'=>'测试yii2商城'
 ];
