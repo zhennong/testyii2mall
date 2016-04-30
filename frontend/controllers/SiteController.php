@@ -90,7 +90,6 @@ class SiteController extends FrontendController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post())) {
-            var_dump($model);
             $User = User::findOne(['username'=>$model->username]);
             if($User->email_validate_code!=''){
                 Yii::$app->session->setFlash('error', Yii::t('common','Your account is not activity!'));
@@ -180,17 +179,25 @@ class SiteController extends FrontendController
 
     public function actionValidateEmail($email)
     {
+        if (!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
         $email_validate_code = Yii::$app->request->get('token');
         if($email_validate_code){
             $User = User::findOne(['email'=>$email, 'email_validate_code'=>$email_validate_code]);
-            $User->email_validate_code = '';
-            if($User->save()){
-                Yii::$app->session->setFlash('success', 'Your account is activity.');
-                if($User&&Yii::$app->getUser()->login($User)){
-                    return $this->goHome();
-                }
+            if(!$User){
+                Yii::$app->session->setFlash('error', 'Incorrect validate code');
             }else{
-                Yii::$app->session->setFlash('error', $User->getErrors());
+                $User->email_validate_code = '';
+                if($User->save()){
+                    Yii::$app->session->setFlash('success', 'Your account is activity.');
+                    if($User&&Yii::$app->getUser()->login($User)){
+                        return $this->goHome();
+                    }
+                }else{
+                    Yii::$app->session->setFlash('error', $User->getErrors());
+                }
             }
         }
         if($email){
