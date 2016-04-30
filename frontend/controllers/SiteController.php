@@ -179,8 +179,9 @@ class SiteController extends FrontendController
 
     public function actionValidateEmail($email)
     {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+        if (!\Yii::$app->user->isGuest||User::findOne(['email'=>$email, 'email_validate_code'=>''])) {
+            Yii::$app->session->setFlash('error', 'Your account is active');
+            return $this->goBack();
         }
 
         $email_validate_code = Yii::$app->request->get('token');
