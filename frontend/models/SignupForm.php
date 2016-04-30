@@ -14,6 +14,15 @@ class SignupForm extends Model
     public $email;
     public $password;
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('common', 'Username'),
+            'password' => Yii::t('common', 'Password'),
+            'email' => Yii::t('common', 'Email'),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -49,6 +58,7 @@ class SignupForm extends Model
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
+            $user->generateEmailKey();
             if ($user->save()) {
                 return $user;
             }

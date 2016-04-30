@@ -30,10 +30,6 @@ return [
             'errorAction' => 'site/error',
         ],
     ],
-    'modules' => [
-        'test' => [
-            'class' => 'frontend\modules\test\Test',
-        ],
-    ],
+    'modules' => [],
     'params' => $params,
 ];

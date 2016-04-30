@@ -20,6 +20,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property integer $is_admin
+ * @property string $email_validate_code
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -41,6 +43,23 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::className(),
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('common', 'ID'),
+            'username' => Yii::t('common', 'Username'),
+            'auth_key' => Yii::t('common', 'Auth Key'),
+            'password_hash' => Yii::t('common', 'Password Hash'),
+            'password_reset_token' => Yii::t('common', 'Password Reset Token'),
+            'email' => Yii::t('common', 'Email'),
+            'status' => Yii::t('common', 'Status'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
+            'is_admin' => Yii::t('common', 'Is Admin'),
+            'email_validate_code' => Yii::t('common', 'Email Validate Code'),
         ];
     }
 
@@ -168,6 +187,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    public function generateEmailKey()
+    {
+        $this->email_validate_code = Yii::$app->security->generateRandomString();
     }
 
     /**
