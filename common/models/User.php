@@ -209,4 +209,15 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public function afterFind()
+    {
+        /*if($this->email_validate_code!=''){
+            Yii::$app->session->setFlash('error', Yii::t('common','Your account is not activity!'));
+            $this->trigger('email_validate');
+            Yii::$app->response->redirect(Yii::$app->urlManager->createUrl(['/site/validate-email', 'email'=>$this->email]));
+            return false;
+            exit;
+        }*/
+    }
 }

@@ -9,6 +9,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\base\Event;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\filters\VerbFilter;
@@ -188,7 +189,6 @@ class SiteController extends FrontendController
         if($email){
             Yii::$app->session->setFlash('success', 'A signup validate message has send to your email ('.$email.') .
             Place fill in the validate code below or click the validate link in you email .');
-
             $model = new ValidateEmailForm();
             $model->email = $email;
             return $this->render('validate-email',['model'=>$model]);
