@@ -15,6 +15,17 @@ return [
     'modules' => [
         'admin' => [
             'class' => 'mdm\admin\Module',
+            'layout'=>'left-menu',
+            'mainLayout' => '@app/views/layouts/main.php',
+            /**/
+            'controllerMap' => [
+                'assignment' => [
+                    'class' => mdm\admin\controllers\AssignmentController::className(),
+                    'userClassName' => 'common\models\User',
+                    'idField' => 'id'
+                ]
+            ],
+            'menus' => [],
         ],
     ],
     'components' => [
@@ -41,7 +52,7 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            '*',
+            'site/*',
         ]
     ],
     'params' => $params,
