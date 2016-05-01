@@ -2,6 +2,8 @@
 
 /* @var $this yii\web\View */
 
+use yii\bootstrap\Html;
+
 $this->title = Yii::t('common','testyii2mall');
 ?>
 <div class="site-index">
@@ -11,7 +13,14 @@ $this->title = Yii::t('common','testyii2mall');
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p>
+            <?=Html::a("Yii Framework","http://www.yiiframework.com",['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
+            <?=Html::a("Yii China","http://www.yiichina.com",['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
+            <?=Html::a("Bootstrap3","http://www.bootcss.com/",['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
+            <?=Html::a("yii2mall back","http://wodrow.back.yii2mall.cn",['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
+            <?=Html::a("yii2admin github","https://github.com/mdmsoft/yii2-admin",['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
+            <?=Html::a("test",Yii::$app->urlManager->createUrl("/test/test1"),['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
+        </p>
     </div>
 
     <div class="body-content">

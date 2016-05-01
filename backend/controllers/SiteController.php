@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use common\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -64,13 +65,32 @@ class SiteController extends BackendController
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post())) {
+            $User = User::findOne(['username'=>$model->username]);
+            if(!$User->is_admin > User::IS_ADMIN_FALSE){
+                Yii::$app->session->setFlash('error', Yii::t('common','Your account is not an administrator!'));
+                return $this->goBack();
+            }
+            if($User->email_validate_code!=User::EMAIL_ENABLE){
+                Yii::$app->session->setFlash('error', Yii::t('common','Your account is not activity!'));
+                Yii::$app->response->redirect(Yii::$app->params['frontUrl'].Yii::$app->urlManager->createUrl(['/site/validate-email', 'email'=>$User->email]));
+            }else{
+                if($model->login()){
+                    return $this->goHome();
+                }
+            }
         } else {
             return $this->render('login', [
                 'model' => $model,
             ]);
         }
+        /*if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        } else {
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        }*/
     }
 
     public function actionLogout()

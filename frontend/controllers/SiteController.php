@@ -91,7 +91,7 @@ class SiteController extends FrontendController
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post())) {
             $User = User::findOne(['username'=>$model->username]);
-            if($User->email_validate_code!=''){
+            if($User->email_validate_code!=User::EMAIL_ENABLE){
                 Yii::$app->session->setFlash('error', Yii::t('common','Your account is not activity!'));
                 Yii::$app->response->redirect(Yii::$app->urlManager->createUrl(['/site/validate-email', 'email'=>$User->email]));
             }else{

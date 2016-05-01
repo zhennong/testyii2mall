@@ -28,6 +28,11 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    const IS_ADMIN_FALSE = 0;
+    const IS_ADMIN_NORMAL = 1;
+
+    const EMAIL_ENABLE = '';
+
     /**
      * @inheritdoc
      */
