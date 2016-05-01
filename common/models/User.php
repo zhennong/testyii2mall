@@ -30,6 +30,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     const IS_ADMIN_FALSE = 0;
     const IS_ADMIN_NORMAL = 1;
+    const IS_ADMIN_SUPER = 2;
 
     const EMAIL_ENABLE = '';
 
