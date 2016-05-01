@@ -9,9 +9,9 @@
 namespace backend\controllers;
 
 
-use yii\web\Controller;
+use common\controllers\CommonController;
 
-class BackendController extends Controller
+class BackendController extends CommonController
 {
 
 }

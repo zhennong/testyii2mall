@@ -9,9 +9,9 @@
 namespace frontend\controllers;
 
 
-use yii\web\Controller;
+use common\controllers\CommonController;
 
-class FrontendController extends Controller
+class FrontendController extends CommonController
 {
 
 }
