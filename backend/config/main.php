@@ -27,6 +27,9 @@ return [
             ],
             'menus' => [],
         ],
+        'user' => [
+            'class' => 'backend\modules\user\User',
+        ],
     ],
     'components' => [
         'log' => [

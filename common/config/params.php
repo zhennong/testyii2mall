@@ -6,4 +6,6 @@ return [
 
     'frontUrl' => 'http://wodrow.front.yii2mall.cn/',
     'backUrl' => 'http://wodrow.back.yii2mall.cn/',
+
+    'icon-framework' => 'fa',
 ];

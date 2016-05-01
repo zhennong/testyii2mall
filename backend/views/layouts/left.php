@@ -1,12 +1,26 @@
 <?php
 
+use kartik\icons\Icon;
+use mdm\admin\components\MenuHelper;
+use mdm\admin\components\Helper;
+use mdm\admin\models\Menu;
+
 $is_admin_super = Yii::$app->user->identity->is_admin==\common\models\User::IS_ADMIN_SUPER ?1:0;
 
 $items = [
     ['label' => Yii::t('common', 'Operate Menus'), 'options' => ['class' => 'header']],
-    ['label' => 'Gii', 'url' => ['/gii'], 'visible'=>$is_admin_super],
-    ['label' => 'RBAC', 'url' => ['/admin'], 'visible'=>$is_admin_super],
+    ['label' => 'Gii', 'icon'=>'fa fa-cog', 'url' => ['/gii'], 'visible'=>$is_admin_super],
+    ['label' => 'RBAC', 'icon'=>'fa fa-cog', 'url' => ['/admin'], 'visible'=>$is_admin_super],
 ];
+
+$menus = MenuHelper::getAssignedMenu(Yii::$app->user->id);
+$menus = Helper::filter($menus);
+foreach ($menus as $k => $v){
+    $x = Menu::find()->where(['name'=>$v['label']])->one();
+    $menus[$k]['icon'] = $x['icon'];
+}
+
+$items = array_merge($items,$menus);
 
 ?>
 
