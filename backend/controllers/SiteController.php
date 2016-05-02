@@ -4,7 +4,7 @@ namespace backend\controllers;
 use common\models\User;
 use Yii;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use backend\models\LoginForm;
 use yii\filters\VerbFilter;
 
 /**
@@ -20,9 +20,10 @@ class SiteController extends BackendController
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['index', 'login', 'logout'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login'],
                         'allow' => true,
                     ],
                     [
@@ -41,18 +42,6 @@ class SiteController extends BackendController
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
         return $this->render('index');
@@ -66,20 +55,8 @@ class SiteController extends BackendController
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post())) {
-            $User = User::findOne(['username'=>$model->username]);
-            if(!$User->is_admin > User::IS_ADMIN_FALSE){
-                Yii::$app->session->setFlash('error', Yii::t('common','Your account is not an administrator!'));
-                return $this->goBack();
-            }
-            if($User->email_validate_code!=User::EMAIL_ENABLE){
-                Yii::$app->session->setFlash('error', Yii::t('common','Your account is not activity!'));
-                Yii::$app->response->redirect(Yii::$app->params['frontUrl'].Yii::$app->urlManager->createUrl(['/site/validate-email', 'email'=>$User->email]));
-            }else{
-                if($model->login()){
-                    return $this->goHome();
-                }
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
         } else {
             return $this->render('login', [
                 'model' => $model,

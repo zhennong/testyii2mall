@@ -52,22 +52,6 @@ class SiteController extends FrontendController
     }
 
     /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
-
-    /**
      * Displays homepage.
      *
      * @return mixed
@@ -89,16 +73,8 @@ class SiteController extends FrontendController
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post())) {
-            $User = User::findOne(['username'=>$model->username]);
-            if($User->email_validate_code!=User::EMAIL_ENABLE){
-                Yii::$app->session->setFlash('error', Yii::t('common','Your account is not activity!'));
-                Yii::$app->response->redirect(Yii::$app->urlManager->createUrl(['/site/validate-email', 'email'=>$User->email]));
-            }else{
-                if($model->login()){
-                    return $this->goBack();
-                }
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -132,7 +108,6 @@ class SiteController extends FrontendController
             } else {
                 Yii::$app->session->setFlash('error', 'There was an error sending email.');
             }
-
             return $this->refresh();
         } else {
             return $this->render('contact', [
@@ -183,7 +158,10 @@ class SiteController extends FrontendController
             Yii::$app->session->setFlash('error', 'Your account is active');
             return $this->goBack();
         }
-
+        $error_msg = Yii::$app->request->get('error_msg');
+        if($error_msg){
+            Yii::$app->session->setFlash('error', $error_msg);
+        }
         $email_validate_code = Yii::$app->request->get('token');
         if($email_validate_code){
             $User = User::findOne(['email'=>$email, 'email_validate_code'=>$email_validate_code]);

@@ -6,19 +6,29 @@ use yii\base\Model;
 
 /**
  * Login form
+ * @property $username
+ * @property $password
+ * @property $verifyCode
+ * @property $rememberMe
  */
 class LoginForm extends Model
 {
     public $username;
     public $password;
+    public $verifyCode;
     public $rememberMe = true;
 
     private $_user;
 
-
-    /**
-     * @inheritdoc
-     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('common', 'Username'),
+            'password' => Yii::t('common', 'Password'),
+            'rememberMe' => Yii::t('common', 'Remember Me'),
+        ];
+    }
+    
     public function rules()
     {
         return [
@@ -28,6 +38,9 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            // email validate?
+            ['password', 'isEmailValidate'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -45,6 +58,20 @@ class LoginForm extends Model
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
+        }
+    }
+
+    /**
+     * check email active or not
+     * @param $attribute
+     */
+    public function isEmailValidate($attribute)
+    {
+        $User = User::findOne(['username'=>$this->username]);
+        if($User&&$User->email_validate_code!=''){
+            $error_msg = Yii::t('common','Your email is not activity!');
+            $this->addError($attribute, $error_msg);
+            Yii::$app->response->redirect(Yii::$app->params['frontUrl'].Yii::$app->urlManager->createUrl(['/site/validate-email', 'email'=>$User->email, 'error_msg'=>$error_msg]));
         }
     }
 
