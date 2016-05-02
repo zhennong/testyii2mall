@@ -35,7 +35,7 @@ class CommonController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'maxLength' => 4,
                 'minLength' => 4,
-                'width' => 120,
+                'height' => 40,
                 'offset' => 2,
             ],
         ];
