@@ -26,9 +26,10 @@ class DefaultController extends Controller
      */
     public function actionTest1()
     {
-        $pdf = Yii::$app->mpdf;
+        /*$pdf = Yii::$app->mpdf;
         $pdf->content = $this->renderPartial('test1');
-        return $pdf->render();
+        return $pdf->render();*/
+        return $this->render('test1');
     }
 
     /**
