@@ -40,4 +40,13 @@ class DefaultController extends Controller
     {
         return $this->render('test2');
     }
+
+    /**
+     * editable
+     * @return string
+     */
+    public function actionTest3()
+    {
+        return $this->render('test3');
+    }
 }

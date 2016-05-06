@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         Html::button(Icon::show('fa fa-plus'), ['type'=>'button', 'title'=>Yii::t('kvgrid', 'Add Book'), 'class'=>'btn btn-success', 'onclick'=>'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' '.
                         Html::a(Icon::show('fa fa-repeat'), ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
                     ],
-                    '{export}',
                     '{toggleData}',
+                    '{export}',
                 ],
                 'pjax' => true,
                 'bordered' => true,

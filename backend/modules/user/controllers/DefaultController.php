@@ -63,7 +63,7 @@ class DefaultController extends BackendController
             ],
             [
                 'class' => 'kartik\grid\ActionColumn',
-                'dropdown' => true,
+                'dropdown' => false,
                 'vAlign'=>'middle',
                 'urlCreator' => function($action, $model, $key, $index) { return '#'; },
                 'viewOptions'=>['title'=>'$viewMsg', 'data-toggle'=>'tooltip'],
