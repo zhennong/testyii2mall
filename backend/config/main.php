@@ -44,6 +44,9 @@ return [
         'user' => [
             'class' => 'backend\modules\user\User',
         ],
+        'test' => [
+            'class' => 'backend\modules\test\Test',
+        ],
     ],
     'components' => [
         'log' => [
