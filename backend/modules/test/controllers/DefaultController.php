@@ -2,6 +2,8 @@
 
 namespace backend\modules\test\controllers;
 
+use Yii;
+use kartik\mpdf\Pdf;
 use yii\web\Controller;
 
 /**
@@ -18,8 +20,23 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    /**
+     * mpdf
+     * @return string
+     */
     public function actionTest1()
     {
-        return $this->render('test1');
+        $pdf = Yii::$app->mpdf;
+        $pdf->content = $this->renderPartial('test1');
+        return $pdf->render();
+    }
+
+    /**
+     * grid
+     * @return string
+     */
+    public function actionTest2()
+    {
+        return $this->render('test2');
     }
 }

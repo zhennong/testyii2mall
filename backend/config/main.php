@@ -41,6 +41,9 @@ return [
         'dynagrid'=> [
             'class'=>'\kartik\dynagrid\Module',
         ],
+        'datecontrol' =>  [
+            'class' => '\kartik\datecontrol\Module'
+        ],
         'user' => [
             'class' => 'backend\modules\user\User',
         ],
@@ -73,7 +76,7 @@ return [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             '*',
-        ]
+        ],
     ],
     'params' => $params,
 ];

@@ -13,6 +13,7 @@ use kartik\icons\Icon;
 
 $this->title = "user list";
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 
 <div class="user-default-user-list">
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-12">
             <?=GridView::widget([
                 'dataProvider' => $dataProvider,
-//                'filterModel' => $searchModel,
+                'filterModel' => $searchModel,
                 'columns' => $gridColumns,
                 'toolbar' =>  [
                     ['content'=>
@@ -28,17 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         Html::a(Icon::show('fa fa-repeat'), ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
                     ],
                     '{export}',
-                    '{toggleData}'
+                    '{toggleData}',
                 ],
                 'pjax' => true,
                 'bordered' => true,
                 'striped' => false,
                 'condensed' => false,
                 'responsive' => false,
-//                'containerOptions' => ['style'=>'overflow: auto'], // only set when $responsive = false
                 'hover' => true,
                 'floatHeader' => true,
-//                'floatHeaderOptions' => ['scrollingTop' => $scrollingTop],
                 'showPageSummary' => true,
                 'panel' => [
                     'type' => GridView::TYPE_PRIMARY

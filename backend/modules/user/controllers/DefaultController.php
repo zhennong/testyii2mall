@@ -24,7 +24,7 @@ class DefaultController extends BackendController
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query'=>\common\models\User::find(),
             'pagination' => [
-                'pagesize' => 2,
+                'pagesize' => 10,
             ],
             'sort' => [
                 'defaultOrder' => [
