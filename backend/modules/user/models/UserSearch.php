@@ -14,9 +14,6 @@ use yii\data\ActiveDataProvider;
 
 class UserSearch extends User
 {
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -25,9 +22,6 @@ class UserSearch extends User
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
