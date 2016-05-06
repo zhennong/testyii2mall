@@ -6,8 +6,7 @@
  * Time: 下午 05:21
  */
 
-namespace backend\modules\user;
-
+namespace backend\modules\user\models;
 
 use common\models\User;
 use yii\base\Model;
