@@ -3,7 +3,7 @@
 namespace backend\modules\user\controllers;
 
 use backend\controllers\BackendController;
-use backend\modules\user\UserSearch;
+use backend\modules\user\models\UserSearch;
 
 /**
  * Default controller for the `user` module
