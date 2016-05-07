@@ -20,7 +20,7 @@ $this->title = Yii::t('common','testyii2mall');
             <?=Html::a("yii2mall back",Yii::$app->params['backUrl'],['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
             <?=Html::a("yii2admin github","https://github.com/mdmsoft/yii2-admin",['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
             <?=Html::a("yii2-adminlte-asset","http://www.yiiframework.com/extension/yii2-adminlte-asset/",['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
-            <?=Html::a("test",Yii::$app->urlManager->createUrl("/test/test1"),['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
+            <?=Html::a("test",Yii::$app->urlManager->createUrl("/test"),['target'=>'_blank','class'=>"btn btn-lg btn-success"]) ?>
         </p>
     </div>
 
