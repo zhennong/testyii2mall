@@ -1,5 +1,12 @@
+<?php
+use yii\bootstrap\Html;
+?>
+
 <div class="test-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
+    <p>
+        <?=Html::a('testrbac',['/test/test']) ?>
+    </p>
     <p>
         This is the view content for action "<?= $this->context->action->id ?>".
         The action belongs to the controller "<?= get_class($this->context) ?>"
