@@ -17,3 +17,14 @@ step2: customize local database config file `/common/config/main.php` as
 step3: customize local web and domain name for frontend and backend
 
 step4: download composer relation use command `php composer.phar install` or copy from server
+
+step5: edit params for example:
+
+edit `/common/config/params-local`
+
+```php
+return [
+    'frontUrl' => 'http://wodrow.front.yii2mall.cn/',
+    'backUrl' => 'http://wodrow.back.yii2mall.cn/',
+];
+```
