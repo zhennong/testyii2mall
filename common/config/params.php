@@ -4,8 +4,5 @@ return [
     'supportEmail' => '1173957281@qq.com',
     'user.passwordResetTokenExpire' => 3600,
 
-    'frontUrl' => 'http://wodrow.front.yii2mall.cn/',
-    'backUrl' => 'http://wodrow.back.yii2mall.cn/',
-
     'icon-framework' => 'fa',
 ];
