@@ -38,7 +38,6 @@ class TestController extends FrontendController
     {
         $searchModel = new TestSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        Tools::_vp(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
