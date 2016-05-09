@@ -64,6 +64,11 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'suffix' => '.html',
+        ],
         'assetManager' => [
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [

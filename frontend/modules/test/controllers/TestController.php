@@ -2,8 +2,9 @@
 
 namespace frontend\modules\test\controllers;
 
-use frontend\controllers\FrontendController;
+use common\Tools;
 use Yii;
+use frontend\controllers\FrontendController;
 use frontend\modules\test\models\Test;
 use frontend\modules\test\models\TestSearch;
 use yii\web\NotFoundHttpException;
@@ -37,6 +38,7 @@ class TestController extends FrontendController
     {
         $searchModel = new TestSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        Tools::_vp(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,

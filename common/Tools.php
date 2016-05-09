@@ -25,12 +25,14 @@ class Tools
         switch ($style) {
             case 0:
                 echo "<pre>";
+                echo "<br><hr>";
                 var_dump($test);
                 echo "</pre>";
                 break;
 
             case 1:
                 echo "<pre>";
+                echo "<br><hr>";
                 var_dump($test);
                 echo "<hr/>";
                 for($i=0;$i<100;$i++){

@@ -26,9 +26,8 @@ class Test extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id'], 'integer'],
             [['name'], 'string', 'max' => 255],
+            [['name'], 'unique'],
         ];
     }
 

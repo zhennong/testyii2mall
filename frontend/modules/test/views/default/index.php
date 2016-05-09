@@ -5,7 +5,8 @@ use yii\bootstrap\Html;
 <div class="test-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
     <p>
-        <?=Html::a('testrbac',['/test/test']) ?>
+        <?=Html::a('testcurd',['/test/test']) ?>
+        <?=Html::a('testsocket',['/test/socket']) ?>
     </p>
     <p>
         This is the view content for action "<?= $this->context->action->id ?>".

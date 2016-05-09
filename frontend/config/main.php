@@ -25,6 +25,11 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'suffix' => '.html',
+        ],
     ],
     'modules' => [
         'test' => [
