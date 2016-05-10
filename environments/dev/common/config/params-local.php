@@ -1,5 +1,5 @@
 <?php
 return [
-    'frontUrl'=>'',
-    'backUrl'=>'',
+    'frontUrl'=>'http://',
+    'backUrl'=>'http://',
 ];
