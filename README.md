@@ -2,7 +2,7 @@
 
 step1: run command `git clone https://github.com/zhennong/testyii2mall.git`;
 
-step2: customize local database config file `/common/config/main.php` as
+step2: customize local database config file `/common/config/local-main.php` as
 
 ```php
 'db' => [
