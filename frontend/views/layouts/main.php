@@ -52,7 +52,7 @@ AppAsset::register($this);
                 //linkOptions代表点击的话会发送post请求
                 [ 'label' => \kartik\icons\Icon::show('home').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'User Center'),'url'=>['/person/index']],
                 [ 'label' => \kartik\icons\Icon::show('edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Edit data'),'url'=>['/person/upinfo']],
-                [ 'label' => \kartik\icons\Icon::show('signout').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
+                [ 'label' => \kartik\icons\Icon::show('sign-out').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
             ],
         ];
         $menuItemsRight[] = ['label' => Yii::t('common', 'Help Center'), 'url' => ['/help/index']];
