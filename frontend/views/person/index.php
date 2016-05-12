@@ -21,7 +21,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed201
                     />
                         <span class="input-group-btn">
                             <button type='submit' name='search' id='search-btn' class="btn btn-flat">
-                                <?= Icon::show('fa fa-search') ?>
+                                <?= Icon::show('search') ?>
                             </button>
                         </span>
                 </div>
