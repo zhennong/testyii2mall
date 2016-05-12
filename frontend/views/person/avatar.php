@@ -3,6 +3,7 @@
 use yii\bootstrap\Html;
 use mdm\admin\components\MenuHelper;
 use yii\bootstrap\Nav;
+use kartik\icons\Icon;
 $this->title = Yii::t('common','testyii2mall');
 
 ?>
@@ -20,8 +21,7 @@ $this->title = Yii::t('common','testyii2mall');
                     />
                         <span class="input-group-btn">
                             <button type='submit' name='search' id='search-btn' class="btn btn-flat">
-                                <i class="icon-search">
-                                </i>
+                                <?= Icon::show('search')?>
                             </button>
                         </span>
                 </div>
@@ -45,8 +45,8 @@ $this->title = Yii::t('common','testyii2mall');
                     会员: <?=Yii::$app->
                         user->identity->username ?>
 
-                        <a style="float: right;">在线<i class="icon-ok-sign">
-                            </i></a>
+                        <a style="float: right;">在线<?= Icon::show('ok-sign')?>
+                            </a>
                     </span>
                 </div>
             </div>
@@ -69,6 +69,8 @@ $this->title = Yii::t('common','testyii2mall');
                 <a href="#" class="list-group-item">我的优惠券</a>
             </div>
         </div>
+        
+        
         <div class="col-md-6">
             <div class="caijian">
                 <div class="imageBox">
@@ -82,51 +84,15 @@ $this->title = Yii::t('common','testyii2mall');
                         </a>
                         <input type="file" class="" name="upload-file" id="upload-file" />
                     </div>
-                    <input type="button" id="btnCrop"  class="Btnsty_peyton" value="裁切">
+                    <input type="button" id="btnCrop"  class="Btnsty_peyton" value="预览">
                     <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
                     <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
                 </div>
                 <div class="cropped"></div>
             </div>
-            <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-            <script type="text/javascript" src="/js/cropbox.js"></script>
-            <script type="text/javascript">
-
-                $(window).load(function() {
-                    var options =
-                    {
-                        thumbBox: '.thumbBox',
-                        spinner: '.spinner',
-                        imgSrc: 'http://yshop.com/images/avatar.jpg'
-                    }
-                    var cropper = $('.imageBox').cropbox(options);
-                    $('#upload-file').on('change', function(){
-                        var reader = new FileReader();
-                        reader.onload = function(e) {
-                            options.imgSrc = e.target.result;
-                            cropper = $('.imageBox').cropbox(options);
-                        }
-                        reader.readAsDataURL(this.files[0]);
-                        this.files = [];
-                    })
-                    $('#btnCrop').on('click', function(){
-                        var img = cropper.getDataURL();
-                        $('.cropped').html('');
-                        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
-                        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
-                        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
-                    })
-                    $('#btnZoomIn').on('click', function(){
-                        cropper.zoomIn();
-                    })
-                    $('#btnZoomOut').on('click', function(){
-                        cropper.zoomOut();
-                    })
-                });
-            </script>
         </div>
         <div class="col-md-3">
-            <p>.col-md-3</p>
+
 
         </div>
     </div>

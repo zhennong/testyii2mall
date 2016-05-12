@@ -5,7 +5,7 @@
 
 return [
     'test'=>'测试',
-    'testyii2mall'=>'测试yii2商城',
+    'testyii2mall'=>'Yii2商城',
     'Username'=>'用户名',
     'Password'=>'密码',
     'Email'=>'邮箱',

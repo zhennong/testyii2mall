@@ -22,7 +22,8 @@ class AppAsset extends AssetBundle
         'css/style.css',
     ];
     public $js = [
-        //'js/cropbox.js',
+        'js/cropbox.js',
+        'js/sctp.js',
     ];
     public $depends = [
         'dmstr\web\AdminLteAsset',
