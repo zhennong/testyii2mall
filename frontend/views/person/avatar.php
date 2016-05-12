@@ -2,7 +2,9 @@
 /* @var $this yii\web\View */
 use yii\bootstrap\Html;
 use mdm\admin\components\MenuHelper;
-use yii\bootstrap\Nav; $this->title = Yii::t('common','testyii2mall'); $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+use yii\bootstrap\Nav;
+$this->title = Yii::t('common','testyii2mall');
+
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -67,8 +69,6 @@ use yii\bootstrap\Nav; $this->title = Yii::t('common','testyii2mall'); $director
                 <a href="#" class="list-group-item">我的优惠券</a>
             </div>
         </div>
-        <script type="text/javascript" src="/js/jquery.2.1.4.min.js"></script>
-        <script type="text/javascript" src="/js/cropbox.js"></script>
         <div class="col-md-6">
             <div class="caijian">
                 <div class="imageBox">
@@ -87,6 +87,9 @@ use yii\bootstrap\Nav; $this->title = Yii::t('common','testyii2mall'); $director
                     <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
                 </div>
                 <div class="cropped"></div>
+            </div>
+            <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="/js/cropbox.js"></script>
             <script type="text/javascript">
 
                 $(window).load(function() {
@@ -121,7 +124,6 @@ use yii\bootstrap\Nav; $this->title = Yii::t('common','testyii2mall'); $director
                     })
                 });
             </script>
-            </div>
         </div>
         <div class="col-md-3">
             <p>.col-md-3</p>

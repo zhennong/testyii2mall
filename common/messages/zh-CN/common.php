@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: wodrow
- * Date: 4/29/16
- * Time: 9:44 PM
+ * 对应的汉字配置
  */
 
 return [

@@ -2,7 +2,10 @@
 /* @var $this yii\web\View */
 use yii\bootstrap\Html;
 use mdm\admin\components\MenuHelper;
-use yii\bootstrap\Nav; $this->title = Yii::t('common','testyii2mall'); $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+use yii\bootstrap\Nav;
+use kartik\icons\Icon;
+$this->title = Yii::t('common','testyii2mall');
+$directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -18,8 +21,7 @@ use yii\bootstrap\Nav; $this->title = Yii::t('common','testyii2mall'); $director
                     />
                         <span class="input-group-btn">
                             <button type='submit' name='search' id='search-btn' class="btn btn-flat">
-                                <i class="icon-search">
-                                </i>
+                                <?= Icon::show('fa fa-search') ?>
                             </button>
                         </span>
                 </div>
@@ -43,8 +45,8 @@ use yii\bootstrap\Nav; $this->title = Yii::t('common','testyii2mall'); $director
                     会员: <?=Yii::$app->
                     user->identity->username ?>
 
-                    <a style="float: right;">在线<i class="icon-ok-sign">
-                        </i></a>
+                    <a style="float: right;">在线<?= Icon::show('fa fa-sign') ?>
+                        </a>
                     </span>
                 </div>
 
