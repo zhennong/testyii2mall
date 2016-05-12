@@ -28,34 +28,34 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Yii商城',
+        'brandLabel' => Yii::t('common', 'My Company'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItemsLeft = [
-        ['label' => '首页', 'url' => ['/site/index']],
-        ['label' => '联系我们', 'url' => ['/site/contact']],
-        ['label' => '收藏本页', 'url' => ['/site/about']],
+        ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
+        ['label' => Yii::t('common', 'Contact'), 'url' => ['/site/contact']],
+        ['label' => Yii::t('common', 'About'), 'url' => ['/site/about']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItemsRight[] = ['label' => '注册', 'url' => ['/site/signup']];
-        $menuItemsRight[] = ['label' => '登录', 'url' => ['/site/login']];
-        $menuItemsRight[] = ['label' => '帮助中心', 'url' => ['/help/index']];
+        $menuItemsRight[] = ['label' => Yii::t('common', 'Signup'), 'url' => ['/site/signup']];
+        $menuItemsRight[] = ['label' => Yii::t('common', 'Login'), 'url' => ['/site/login']];
+        $menuItemsRight[] = ['label' => Yii::t('common', 'Help Center'), 'url' => ['/help/index']];
     } else {
         //修改登录退出的样式，并引入Font Awesome图标
         $menuItemsRight[] = [
-            'label' => '您好, '.Yii::$app->user->identity->username,
+            'label' => Yii::t('common', 'Hello').', '.Yii::$app->user->identity->username,
             'items' =>[
                 //要注意的是下面<i >这段代码，默认是会被转义输出的
                 //linkOptions代表点击的话会发送post请求
-                [ 'label' => '<i class="icon-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;个人中心','url'=>['/person/index']],
-                [ 'label' => '<i class="icon-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;修改资料','url'=>['/person/upinfo']],
-                [ 'label' => '<i class="icon-signout"></i>&nbsp;&nbsp;&nbsp;&nbsp;退出','url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
+                [ 'label' => '<i class="icon-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'User Center'),'url'=>['/person/index']],
+                [ 'label' => '<i class="icon-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Edit data'),'url'=>['/person/upinfo']],
+                [ 'label' => '<i class="icon-signout"></i>&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
             ],
         ];
-        $menuItemsRight[] = ['label' => '帮助中心', 'url' => ['/help/index']];
+        $menuItemsRight[] = ['label' => Yii::t('common', 'Help Center'), 'url' => ['/help/index']];
     }
     //设置nav的encodeLabels属性 可以让上面的代码原样输出
     echo Nav::widget([
