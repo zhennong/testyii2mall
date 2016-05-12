@@ -50,9 +50,9 @@ AppAsset::register($this);
             'items' =>[
                 //要注意的是下面<i >这段代码，默认是会被转义输出的
                 //linkOptions代表点击的话会发送post请求
-                [ 'label' => '<i class="icon-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'User Center'),'url'=>['/person/index']],
-                [ 'label' => '<i class="icon-edit"></i>&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Edit data'),'url'=>['/person/upinfo']],
-                [ 'label' => '<i class="icon-signout"></i>&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
+                [ 'label' => \kartik\icons\Icon::show('fa fa-home').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'User Center'),'url'=>['/person/index']],
+                [ 'label' => \kartik\icons\Icon::show('fa fa-edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Edit data'),'url'=>['/person/upinfo']],
+                [ 'label' => \kartik\icons\Icon::show('fa fa-signout').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
             ],
         ];
         $menuItemsRight[] = ['label' => Yii::t('common', 'Help Center'), 'url' => ['/help/index']];

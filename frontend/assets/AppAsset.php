@@ -20,14 +20,11 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/style.css',
-        //引入字体图标
-        'css/Font-Awesome-3.2.1/css/font-awesome.min.css',
     ];
     public $js = [
         //'js/cropbox.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'dmstr\web\AdminLteAsset',
     ];
 }
