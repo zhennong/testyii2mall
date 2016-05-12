@@ -11,5 +11,5 @@ namespace backend\controllers;
 
 class PublicController extends BackendController
 {
-
+    
 }

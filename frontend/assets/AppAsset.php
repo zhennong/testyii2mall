@@ -15,12 +15,16 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/style.css',
+        //引入字体图标
+        'css/Font-Awesome-3.2.1/css/font-awesome.min.css',
     ];
+    public $basePath = '@webroot';
+    public $baseUrl = '@web';
     public $js = [
+        //'js/cropbox.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
