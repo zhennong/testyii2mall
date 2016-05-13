@@ -73,6 +73,7 @@ $this->title = Yii::t('common','testyii2mall');
         
         <div class="col-md-6">
             <div class="caijian">
+
                 <div class="imageBox">
                     <div class="thumbBox"></div>
                     <div class="spinner" style="display: none">Loading...</div>
@@ -82,13 +83,14 @@ $this->title = Yii::t('common','testyii2mall');
                     <div class="new-contentarea tc"> <a href="javascript:void(0)" class="upload-img">
                             <label for="upload-file">上传图像</label>
                         </a>
-                        <input type="file" class="" name="upload-file" id="upload-file" />
+                        <input type="file" class="" name="img" id="upload-file" />
                     </div>
                     <input type="button" id="btnCrop"  class="Btnsty_peyton" value="预览">
                     <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
                     <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
                 </div>
                 <div class="cropped"></div>
+                    <button class="btn btn-primary btn-lg btn-block" type="button">提交</button>
             </div>
         </div>
         <div class="col-md-3">
