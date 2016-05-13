@@ -11,10 +11,14 @@ class PersonController extends FrontendController{
         return $this->render('index');
     }
 
-    //上传头像
+    //上传头像界面
     public function actionAvatar(){
         return $this->render('avatar');
     }
+
+    /**
+     * 文件上传, 暂搁置,后续用
+     */
     public function actionUpload(){
         $up = new UploadForm();
         //设置属性(上传的位置,大小,类型, 名是否要随机生成)
@@ -32,17 +36,29 @@ class PersonController extends FrontendController{
         }
     }
 
-    public function actionCeshi(){
+    /**
+     * Ajax头像上传
+     * 上传非图片类型不会触发ajax
+     * return 暂返回状态,图片保存本地,路径没有存放数据库
+     */
+    public function actionToux(){
         $uid = Yii::$app->user->identity->id;
         if(Yii::$app->request->isAjax){
             $img =$_POST['base'];
-            $s = base64_decode(str_replace('data:image/png;base64,', '', $img));
-            if(file_put_contents("./images/icon/uid{$uid}.png", $s)){
+            $src = base64_decode(str_replace('data:image/png;base64,', '', $img));
+            if(file_put_contents("./images/icon/uid{$uid}.png", $src)){
                 echo "ok";
             }else{
                 echo "no";
             }
         }
+    }
+
+    /**
+     * 用户资料修改界面
+     */
+    public function actionUinfo(){
+        echo 'ok';
     }
 
 }

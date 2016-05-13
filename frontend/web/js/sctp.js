@@ -15,15 +15,15 @@ $(window).load(function() {
         }
         reader.readAsDataURL(this.files[0]);
         this.files = [];
-    })
+    });
     $('#btnCrop').on('click', function(){
         var img = cropper.getDataURL();
         //alert(img);
         $.ajax({
             //提交数据的类型 POST GET
             type:"POST",
-            //提交的网址
-            url:"http://yshop.com/person/ceshi.html",
+            //提交的网址,如果不是伪静态的,请配置伪静态或去掉.html
+            url:"/person/toux.html",
             //提交的数据
             data:{base:img},
             //返回数据的格式
@@ -36,7 +36,7 @@ $(window).load(function() {
             //}   ,
             //调用执行后调用的函数
             complete: function(XMLHttpRequest, textStatus){
-                //alert(XMLHttpRequest.responseText);
+                alert(XMLHttpRequest.responseText);
                 //alert(textStatus);
                 //HideLoading();
             },
