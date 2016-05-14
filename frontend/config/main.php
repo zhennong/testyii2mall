@@ -32,8 +32,18 @@ return [
         ],
     ],
     'modules' => [
+        //配置gii可以同域访问
+        'gii'=>[
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => [
+                '127.0.0.1','192.168.0.*','::1',
+            ],
+        ],
         'test' => [
             'class' => 'frontend\modules\test\Test',
+        ],
+        'persons' => [
+            'class' =>'frontend\modules\persons\Persons',
         ],
     ],
     'params' => $params,

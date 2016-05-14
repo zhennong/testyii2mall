@@ -1,11 +1,12 @@
 <?php
-namespace frontend\controllers;
+namespace frontend\modules\persons\controllers;
 
 use Yii;
+use yii\web\Controller;
 use common\models\UploadForm;
 
 
-class PersonController extends FrontendController{
+class PersonController extends Controller{
 
     public function actionIndex(){
         return $this->render('index');
@@ -51,6 +52,8 @@ class PersonController extends FrontendController{
             }else{
                 echo "no";
             }
+        }else{
+            echo "post";
         }
     }
 
@@ -58,8 +61,10 @@ class PersonController extends FrontendController{
      * 用户资料修改界面
      */
     public function actionUinfo(){
-        echo 'ok';
+       // $this->layout = '@app/views/person/index.php';
+        return $this->render('uinfo.php');
     }
+
 
 }
 

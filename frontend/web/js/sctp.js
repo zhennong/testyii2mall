@@ -23,7 +23,7 @@ $(window).load(function() {
             //提交数据的类型 POST GET
             type:"POST",
             //提交的网址,如果不是伪静态的,请配置伪静态或去掉.html
-            url:"/person/toux.html",
+            url:"/persons/person/toux.html",
             //提交的数据
             data:{base:img},
             //返回数据的格式
@@ -47,8 +47,8 @@ $(window).load(function() {
         });
         $('.cropped').html('');
         $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
-        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
-        $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
+        $('.cropped').append('<img src="'+img+'" align="absmiddle" style=" width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');
+        $('.cropped').append('<img src="'+img+'" align="absmiddle" style=" width:180px;margin-top:4px;border-radius:180px;box-shadow:0px 0px 12px #7E7E7E;"><p>180px*180px</p>');
     })
     $('#btnZoomIn').on('click', function(){
         cropper.zoomIn();

@@ -12,6 +12,7 @@ use common\widgets\Alert;
 use kartik\icons\Icon;
 
 AppAsset::register($this);
+$directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -69,15 +70,32 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
-
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        <div class="row">
+            <?= $this->render(
+                'header.php',
+                ['directoryAsset' => $directoryAsset]
+            ) ?>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-3">
+                <?= $this->render(
+                    'left.php',
+                    ['directoryAsset' => $directoryAsset]
+                ) ?>
+            </div>
+            <div class="col-md-7">
+                <?= $content ?>
+            </div>
+            <div class="col-md-2">
+                <?= $this->render(
+                    'right.php',
+                    ['directoryAsset' => $directoryAsset]
+                ) ?>
+            </div>
+        </div>
     </div>
-</div>
 
 <footer class="footer">
     <div class="container">
