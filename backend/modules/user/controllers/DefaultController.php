@@ -2,8 +2,11 @@
 
 namespace backend\modules\user\controllers;
 
+use Yii;
 use backend\controllers\BackendController;
 use backend\modules\user\models\UserSearch;
+use yii\web\NotFoundHttpException;
+use common\models\User;
 
 /**
  * Default controller for the `user` module
@@ -65,7 +68,7 @@ class DefaultController extends BackendController
                 'class' => 'kartik\grid\ActionColumn',
                 'dropdown' => false,
                 'vAlign'=>'middle',
-                'urlCreator' => function($action, $model, $key, $index) { return '#'; },
+//                'urlCreator' => function($action, $model, $key, $index) { return '#'; },
                 'viewOptions'=>['title'=>'$viewMsg', 'data-toggle'=>'tooltip'],
                 'updateOptions'=>['title'=>'$updateMsg', 'data-toggle'=>'tooltip'],
                 'deleteOptions'=>['title'=>'$deleteMsg', 'data-toggle'=>'tooltip'],
@@ -78,4 +81,53 @@ class DefaultController extends BackendController
             'searchModel' => $searchModel,
         ]);
     }
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionCreate()
+    {
+        $model = new User();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['update', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['user-list']);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = User::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
 }
+
