@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\UserInformation */
 
-$this->title = $model->user_id;
+$this->title = Yii::t('common','User Informations');
 $this->params['breadcrumbs'][] = ['label' => 'User Informations', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,21 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->user_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?= Html::a(Yii::t('common','update'), ['update', 'id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'user_id',
-            'avatar',
             'nickname',
             'sex',
             'birthday',
@@ -42,8 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'address',
             'company',
             'personalized_signature',
-            'created_at',
-            'updated_at',
         ],
     ]) ?>
 

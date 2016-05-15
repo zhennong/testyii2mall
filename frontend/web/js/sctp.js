@@ -36,7 +36,7 @@ $(window).load(function() {
             //}   ,
             //调用执行后调用的函数
             complete: function(XMLHttpRequest, textStatus){
-                alert(XMLHttpRequest.responseText);
+                console(XMLHttpRequest.responseText);
                 //alert(textStatus);
                 //HideLoading();
             },

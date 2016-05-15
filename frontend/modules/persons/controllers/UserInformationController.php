@@ -65,13 +65,19 @@ class UserInformationController extends Controller
     public function actionCreate()
     {
         $model = new UserInformation();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->user_id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if($model->load(Yii::$app->request->post())){
+            $uid = Yii::$app->user->id;
+            $model->user_id = $uid;
+            $model->avatar = "/images/icon/uid{$uid}.png";
+            $model->area_id = $_POST['UserInformation']['area_id'];
+            $model->created_at = time();
+            $model->updated_at = time();
+            //var_dump($_POST);exit();
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->user_id]);
+            }
         }
+        return $this->render('create',['model'=>$model]);
     }
 
     /**
@@ -83,13 +89,15 @@ class UserInformationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->user_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if($model->load(Yii::$app->request->post())){
+            $model->area_id = $_POST['UserInformation']['area_id'];
+            $model->updated_at = time();
+            //var_dump($_POST);exit();
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->user_id]);
+            }
         }
+        return $this->render('update',['model'=>$model]);
     }
 
     /**

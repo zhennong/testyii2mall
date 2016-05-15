@@ -109,9 +109,9 @@ class UserInformation extends \yii\db\ActiveRecord
                     $this->city_area_id = $area_info->id;
                     break;
                 case 3:
-                    $this->province_area_id = $Area::getParentId($area_info->pid);
-                    $this->city_area_id = $area_info->pid;
-                    $this->county_area_id = $area_info->id;
+                    //$this->province_area_id = $Area::getParentId($area_info->pid);
+                    //$this->city_area_id = $area_info->pid;
+                    //$this->county_area_id = $area_info->id;
                     break;
             }
         }

@@ -10,6 +10,20 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use kartik\icons\Icon;
+use frontend\modules\persons\models\UserInformation;
+
+//是否有个人资料,有就显示修改,没有显示创建
+$uid    = Yii::$app->user->id;
+$name   = Yii::$app->user->identity->username;
+$nick   = $name;
+$cinfo  = Yii::t('common','Create data');
+$uinfo  = UserInformation::findOne($uid);
+$crop   = "create";
+if($uinfo) {
+    $nick = $uinfo->nickname;
+    $cinfo  = Yii::t('common','Edit data');
+    $crop = "update.html?id=$uid";
+}
 
 AppAsset::register($this);
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
@@ -48,10 +62,10 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
     } else {
         //修改登录退出的样式，并引入Font Awesome图标
         $menuItemsRight[] = [
-            'label' => Yii::t('common', 'Hello').', '.Yii::$app->user->identity->username,
+            'label' => Yii::t('common', 'Hello').', '.$nick,
             'items' =>[
                 [ 'label' => Icon::show('home').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'User Center'),'url'=>['/persons/person/index']],
-                [ 'label' => Icon::show('edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Edit data'),'url'=>['/persons/user-information/create']],
+                [ 'label' => Icon::show('edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.$cinfo,'url'=>["/persons/user-information/$crop"]],
                 [ 'label' => Icon::show('sign-out').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
             ],
         ];
@@ -96,7 +110,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
             </div>
         </div>
     </div>
-
+</div>
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>

@@ -39,6 +39,12 @@ return [
                 '127.0.0.1','192.168.0.*','::1',
             ],
         ],
+        'debug'=>[
+            'class' => 'yii\debug\Module',
+            'allowedIPs' => [
+                '127.0.0.1','192.168.0.*','::1',
+            ],
+        ],
         'test' => [
             'class' => 'frontend\modules\test\Test',
         ],

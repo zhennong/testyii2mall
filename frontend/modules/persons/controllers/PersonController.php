@@ -4,6 +4,7 @@ namespace frontend\modules\persons\controllers;
 use Yii;
 use yii\web\Controller;
 use common\models\UploadForm;
+use frontend\modules\persons\models\UserInformation;
 
 
 class PersonController extends Controller{
@@ -53,7 +54,16 @@ class PersonController extends Controller{
                 echo "no";
             }
         }else{
-            echo "post";
+            $user = new UserInformation();
+            $user->user_id = $uid;
+            $user->avatar = "/images/icon/uid{$uid}.png";
+            $user->created_at = time();
+            $user->updated_at = time();
+            if($user->save()){
+                $this->redirect('index.html');
+            }else{
+                echo "上传失败";
+            }
         }
     }
 
