@@ -72,7 +72,6 @@ class UserInformationController extends Controller
             $model->area_id = $_POST['UserInformation']['area_id'];
             $model->created_at = time();
             $model->updated_at = time();
-            //var_dump($_POST);exit();
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->user_id]);
             }

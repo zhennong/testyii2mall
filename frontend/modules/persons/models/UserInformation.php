@@ -29,6 +29,9 @@ use Yii;
  */
 class UserInformation extends \yii\db\ActiveRecord
 {
+    const SEX_DEFAULT = 0;  //性别
+    const SEX_MAN = 1;      //男
+    const SEX_WOMEN = 2;    //女
     /**
      * @inheritdoc
      */

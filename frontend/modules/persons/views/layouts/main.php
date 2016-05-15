@@ -12,18 +12,33 @@ use common\widgets\Alert;
 use kartik\icons\Icon;
 use frontend\modules\persons\models\UserInformation;
 
-//是否有个人资料,有就显示修改,没有显示创建
-$uid    = Yii::$app->user->id;
-$name   = Yii::$app->user->identity->username;
-$nick   = $name;
-$cinfo  = Yii::t('common','Create data');
+                                                    //默认模板个别变量设置
+$uid    = Yii::$app->user->id;                      //用户id
+$name   = Yii::$app->user->identity->username;      //获取会员名
+$nick   = $name;                                    //用户名默认为会员名
+$img    = '/images/user2-160x160.jpg';              //头像默认图片地址
+$crop   = "/persons/user-information/create.html";  //默认设置为创建资料连接
+$cinfo  = Yii::t('common','Create data');           //对应默认的子是创建资料
 $uinfo  = UserInformation::findOne($uid);
-$crop   = "create";
+
 if($uinfo) {
-    $nick = $uinfo->nickname;
+    $nick   = $uinfo->nickname;
     $cinfo  = Yii::t('common','Edit data');
-    $crop = "update.html?id=$uid";
+    $crop   = "/persons/user-information/view.html?id={$uid}";
+    if($uinfo->avatar) {
+        $img = $uinfo->avatar;
+    }
 }
+
+$this->title = Yii::t('common','testyii2mall');
+
+
+/* @var $this yii\web\View */
+/* @var $searchModel frontend\models\UserInformationSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'User Informations';
+$this->params['breadcrumbs'][] = $this->title;
 
 AppAsset::register($this);
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
@@ -40,7 +55,6 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -65,7 +79,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
             'label' => Yii::t('common', 'Hello').', '.$nick,
             'items' =>[
                 [ 'label' => Icon::show('home').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'User Center'),'url'=>['/persons/person/index']],
-                [ 'label' => Icon::show('edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.$cinfo,'url'=>["/persons/user-information/$crop"]],
+                [ 'label' => Icon::show('edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.$cinfo,'url'=>[$crop]],
                 [ 'label' => Icon::show('sign-out').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
             ],
         ];
@@ -85,29 +99,90 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
     NavBar::end();
     ?>
     <div class="container">
-        <div class="row">
-            <?= $this->render(
-                'header.php',
-                ['directoryAsset' => $directoryAsset]
-            ) ?>
-        </div>
-        <hr>
+        <!-- 头部搜索框 start -->
         <div class="row">
             <div class="col-md-3">
-                <?= $this->render(
-                    'left.php',
-                    ['directoryAsset' => $directoryAsset]
-                ) ?>
+                <b>
+                    搜索商品..
+                </b>
             </div>
+            <div class="col-md-9">
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search..."
+                        />
+                        <span class="input-group-btn">
+                            <button type='submit' name='search' id='search-btn' class="btn btn-flat">
+                                <?= Icon::show('search') ?>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <!-- 头部搜索框 end  -->
+        <!-- 内容区域  start-->
+        <div class="row">
+            <!-- 左侧菜单栏 start-->
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="<?=$img?>" class="img-circle" alt="User Image" style="width: 100%;max-width: 80px;height: auto;"/>
+                    <span class="text-right">
+                    <a href="/persons/person/avatar.html"><i class="icon-circle-arrow-up">
+                        </i>&nbsp;&nbsp;修改头像</a>
+                    </span>
+                    </div>
+                    <div class="panel-footer">
+                    <span class="text-right">
+                        用户 :<?=$nick ?>
+
+                        <a style="float: right;">在线<?= Icon::show('fa fa-sign') ?>
+                        </a>
+                    </span>
+                    </div>
+
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        测试专用
+                    </a>
+                    <a href="/gii.html" class="list-group-item">Gii</a>
+                    <a href="/debug.html" class="list-group-item">Debug</a>
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        交易管理
+                    </a>
+                    <a href="#" class="list-group-item">我的订单</a>
+                    <a href="#" class="list-group-item">购买历史</a>
+                    <a href="#" class="list-group-item">我的收藏</a>
+                    <a href="#" class="list-group-item">我的收货地址</a>
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">
+                        个人中心
+                    </a>
+                    <a href="<?=$crop?>" class="list-group-item">我的资料</a>
+                    <a href="#" class="list-group-item">我的积分</a>
+                    <a href="#" class="list-group-item">修改密码</a>
+                    <a href="#" class="list-group-item">我的优惠券</a>
+                </div>
+            </div>
+            <!-- 左侧菜单栏 end-->
+            <!-- 中间替换区域 start -->
             <div class="col-md-7">
                 <?= $content ?>
             </div>
+            <!-- 中间替换区域 end -->
+            <!-- 右侧栏 start-->
             <div class="col-md-2">
-                <?= $this->render(
-                    'right.php',
-                    ['directoryAsset' => $directoryAsset]
-                ) ?>
+                <div class="col-md-10">
+                    <h2>右侧栏(占2格)</h2>
+                </div>
             </div>
+            <!-- 右侧栏 end-->
         </div>
     </div>
 </div>

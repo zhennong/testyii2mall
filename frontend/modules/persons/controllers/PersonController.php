@@ -44,7 +44,7 @@ class PersonController extends Controller{
      * return 暂返回状态,图片保存本地,路径没有存放数据库
      */
     public function actionToux(){
-        $uid = Yii::$app->user->identity->id;
+        $uid = Yii::$app->user->id;
         if(Yii::$app->request->isAjax){
             $img =$_POST['base'];
             $src = base64_decode(str_replace('data:image/png;base64,', '', $img));
@@ -54,15 +54,26 @@ class PersonController extends Controller{
                 echo "no";
             }
         }else{
-            $user = new UserInformation();
-            $user->user_id = $uid;
-            $user->avatar = "/images/icon/uid{$uid}.png";
-            $user->created_at = time();
-            $user->updated_at = time();
-            if($user->save()){
-                $this->redirect('index.html');
+            $user = UserInformation::findOne($uid);
+            if(!$user){
+                $user =  new UserInformation();
+                $user -> user_id    = $uid;
+                $user -> nickname   = Yii::$app->user->identity->username;
+                $user -> avatar     = "/images/icon/uid{$uid}.png";
+                $user -> created_at = time();
+                $user -> updated_at = time();
+                if($user->save()){
+                    $this->redirect('index.html');
+                }else{
+                    echo '上传失败';
+                }
             }else{
-                echo "上传失败";
+                $user->avatar = "/images/icon/uid{$uid}.png";
+                if($user->save()){
+                    $this->redirect('index.html');
+                }else{
+                    echo "上传失败";
+                }
             }
         }
     }

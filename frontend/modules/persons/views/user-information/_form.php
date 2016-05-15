@@ -17,7 +17,7 @@ $Area = new Area();
 
     <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sex')->radioList(['1'=>'男','0'=>'女']) ?>
+    <?= $form->field($model, 'sex')->radioList([\frontend\modules\persons\models\UserInformation::SEX_MAN=>'男',\frontend\modules\persons\models\UserInformation::SEX_WOMEN=>'女']) ?>
 
     <?= $form->field($model, 'birthday')->textInput() ?>
 
