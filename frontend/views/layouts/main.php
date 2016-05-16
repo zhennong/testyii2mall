@@ -12,21 +12,6 @@ use common\widgets\Alert;
 use kartik\icons\Icon;
 use frontend\modules\persons\models\UserInformation;
 
-//默认模板个别变量设置
-$uid    = Yii::$app->user->id;                      //用户id
-$name   = Yii::$app->user->identity->username;      //获取会员名
-$nick   = $name;                                    //用户名默认为会员名
-$img    = '/images/user2-160x160.jpg';              //头像默认图片地址
-$crop   = "/persons/user-information/create.html";  //默认设置为创建资料连接
-$cinfo  = Yii::t('common','Create data');           //对应默认的子是创建资料
-$uinfo  = UserInformation::findOne($uid);
-
-if($uinfo) {
-    $nick   = $uinfo->nickname;
-    $cinfo  = Yii::t('common','Edit data');
-    $crop   = "/persons/user-information/view.html?id={$uid}";
-}
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -61,7 +46,21 @@ AppAsset::register($this);
         $menuItemsRight[] = ['label' => Yii::t('common', 'Login'), 'url' => ['/site/login']];
         $menuItemsRight[] = ['label' => Yii::t('common', 'Help Center'), 'url' => ['/help/index']];
     } else {
-        //修改登录退出的样式，并引入Font Awesome图标
+
+    //默认模板个别变量设置
+        $uid    = Yii::$app->user->id;                      //用户id
+        $name   = Yii::$app->user->identity->username;      //获取会员名
+        $nick   = $name;                                    //用户名默认为会员名
+        $img    = '/images/user2-160x160.jpg';              //头像默认图片地址
+        $crop   = "/persons/user-information/create.html";  //默认设置为创建资料连接
+        $cinfo  = Yii::t('common','Create data');           //对应默认的子是创建资料
+        $uinfo  = UserInformation::findOne($uid);
+
+        if($uinfo) {
+            $nick   = $uinfo->nickname;
+            $cinfo  = Yii::t('common','Edit data');
+            $crop   = "/persons/user-information/view.html?id={$uid}";
+        }
         $menuItemsRight[] = [
             'label' => Yii::t('common', 'Hello').', '.$nick,
             'items' =>[
