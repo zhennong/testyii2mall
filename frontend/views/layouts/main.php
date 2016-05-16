@@ -10,6 +10,22 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use kartik\icons\Icon;
+use frontend\modules\persons\models\UserInformation;
+
+//默认模板个别变量设置
+$uid    = Yii::$app->user->id;                      //用户id
+$name   = Yii::$app->user->identity->username;      //获取会员名
+$nick   = $name;                                    //用户名默认为会员名
+$img    = '/images/user2-160x160.jpg';              //头像默认图片地址
+$crop   = "/persons/user-information/create.html";  //默认设置为创建资料连接
+$cinfo  = Yii::t('common','Create data');           //对应默认的子是创建资料
+$uinfo  = UserInformation::findOne($uid);
+
+if($uinfo) {
+    $nick   = $uinfo->nickname;
+    $cinfo  = Yii::t('common','Edit data');
+    $crop   = "/persons/user-information/view.html?id={$uid}";
+}
 
 AppAsset::register($this);
 ?>
@@ -47,10 +63,10 @@ AppAsset::register($this);
     } else {
         //修改登录退出的样式，并引入Font Awesome图标
         $menuItemsRight[] = [
-            'label' => Yii::t('common', 'Hello').', '.Yii::$app->user->identity->username,
+            'label' => Yii::t('common', 'Hello').', '.$nick,
             'items' =>[
                 [ 'label' => Icon::show('home').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'User Center'),'url'=>['/persons/person/index']],
-                [ 'label' => Icon::show('edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Edit data'),'url'=>['/persons/user-information/create']],
+                [ 'label' => Icon::show('edit').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', $cinfo),'url'=>[$crop]],
                 [ 'label' => Icon::show('sign-out').'&nbsp;&nbsp;&nbsp;&nbsp;'.Yii::t('common', 'Exit'),'url'=>['/site/logout'],'linkOptions' => ['data-method' => 'post']],
             ],
         ];

@@ -37,7 +37,6 @@ $this->title = Yii::t('common','testyii2mall');
 /* @var $searchModel frontend\models\UserInformationSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'User Informations';
 $this->params['breadcrumbs'][] = $this->title;
 
 AppAsset::register($this);
