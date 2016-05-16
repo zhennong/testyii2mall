@@ -38,6 +38,8 @@ class PersonController extends Controller{
         }
     }
 
+
+
     /**
      * Ajax头像上传
      * 上传非图片类型不会触发ajax
