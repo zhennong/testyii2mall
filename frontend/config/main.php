@@ -30,6 +30,16 @@ return [
             'showScriptName' => false,
             'suffix' => '.html',
         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'qq' => [
+                    'class' => 'yii\authclient\clients\QqOAuth',
+                    'clientId' => '101313703',
+                    'clientSecret' => '8a6907f939dfc0b3782d881a5a2faec2',
+                ],
+            ],
+        ],
     ],
     'modules' => [
         //配置gii可以同域访问

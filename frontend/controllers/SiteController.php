@@ -83,7 +83,6 @@ class SiteController extends FrontendController
             ]);
         }
     }
-
     /**
      * Logs out the current user.
      *

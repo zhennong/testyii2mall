@@ -143,30 +143,25 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
                     </div>
 
                 </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        测试专用
-                    </a>
-                    <a href="/gii.html" class="list-group-item">Gii</a>
-                    <a href="/debug.html" class="list-group-item">Debug</a>
-                </div>
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">
-                        交易管理
-                    </a>
-                    <a href="#" class="list-group-item">我的订单</a>
-                    <a href="#" class="list-group-item">购买历史</a>
-                    <a href="#" class="list-group-item">我的收藏</a>
-                    <a href="#" class="list-group-item">我的收货地址</a>
-                </div>
+<!--                <div class="list-group">-->
+<!--                    <a href="#" class="list-group-item active">-->
+<!--                        测试专用-->
+<!--                    </a>-->
+<!--                    <a href="/gii.html" class="list-group-item">Gii</a>-->
+<!--                    <a href="/debug.html" class="list-group-item">Debug</a>-->
+<!--                </div>-->
                 <div class="list-group">
                     <a href="#" class="list-group-item active">
                         个人中心
                     </a>
                     <a href="<?=$crop?>" class="list-group-item">我的资料</a>
+                    <a href="#" class="list-group-item">我的订单</a>
+                    <a href="#" class="list-group-item">购买历史</a>
+                    <a href="#" class="list-group-item">我的收藏</a>
                     <a href="#" class="list-group-item">我的积分</a>
                     <a href="#" class="list-group-item">修改密码</a>
                     <a href="#" class="list-group-item">我的优惠券</a>
+                    <a href="#" class="list-group-item">我的收货地址</a>
                 </div>
             </div>
             <!-- 左侧菜单栏 end-->

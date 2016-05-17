@@ -8,6 +8,11 @@ $this->title = Yii::t('common','testyii2mall');
 
 ?>
  <div class="col-md-6">
+        <div class="row">
+            <div col-md-11>
+                <h3>温馨提示: 请预览后再提交!</h3>
+            </div>
+        </div>
         <div class="caijian">
             <?php $form = ActiveForm::begin(['action' =>['person/toux']])?>
             <input name="_csrf" type="hidden" id="_csrf" value="<?=Yii::$app->request->csrfToken ?>">

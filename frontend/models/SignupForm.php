@@ -22,6 +22,7 @@ class SignupForm extends Model
             'password' => Yii::t('common', 'Password'),
             'email' => Yii::t('common', 'Email'),
             'verifyCode' => Yii::t('common', 'Verify Code'),
+            'rememberMe' => Yii::t('common','rememberMe'),
         ];
     }
 

@@ -10,8 +10,9 @@ return [
     'Password'=>'密码',
     'Email'=>'邮箱',
     'Signup'=>'注册',
-
+    'reset it'=>'重置',
     'Submit'=>'提交',
+    'rememberMe'=>'记住密码',
 
     'My Company' => 'Yii2商城',
     'Home'=>'首页',
@@ -27,7 +28,7 @@ return [
     'create' => '创建',
     'creates' => '提交',
     'update' => '修改',
-
+    'Verify Code'=>'验证码',
     'user_id'  => '用户ID',
     'avatar'   => '头像信息',
     'nickname' => '昵称',
@@ -37,6 +38,7 @@ return [
     'telephone' => '电话',
     'mobilephone' => '移动电话',
     'qq' => 'QQ',
+    'use other login' => "使用其他方式登录",
     'country' => '国家',
     'area_id' => '区域',
     'address' => '详细地址',
@@ -47,4 +49,5 @@ return [
     'User Informations' => '个人资料',
     'Create User Information' => '创建资料',
     'Update User Information' => '修改资料',
+    'If you forgot your password you can ' =>'忘记密码?',
 ];
