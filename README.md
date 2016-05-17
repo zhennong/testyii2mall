@@ -29,7 +29,7 @@ return [
 ];
 ```
 
-step6: install yii2-admin reference [mdmsoft/yii2-admin](https://github.com/mdmsoft/yii2-admin)
+step6: configure yii2-admin reference [mdmsoft/yii2-admin](https://github.com/mdmsoft/yii2-admin)
 
 ##数据库命名总规则
 
