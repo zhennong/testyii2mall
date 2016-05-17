@@ -2,11 +2,7 @@
 
 step1: run command `git clone https://github.com/zhennong/testyii2mall.git`;
 
-step2: customize local web and domain name for frontend and backend
-
-step3: download composer relation use command `php composer.phar install` or copy from server, then run `php init` in project
-
-step4: customize local database config file `/common/config/local-main.php` as
+step2: customize local database config file `/common/config/main.php` as
 
 ```php
 'db' => [
@@ -18,7 +14,9 @@ step4: customize local database config file `/common/config/local-main.php` as
 ],
 ```
 
-if you want to use your self database, run `php yii migrate`
+step3: customize local web and domain name for frontend and backend
+
+step4: download composer relation use command `php composer.phar install` or copy from server
 
 step5: edit params for example:
 
@@ -26,8 +24,8 @@ edit `/common/config/params-local`
 
 ```php
 return [
-    'frontUrl' => 'http://wodrow.front.yii2mall.cn/', // use your domain name
-    'backUrl' => 'http://wodrow.back.yii2mall.cn/', // use your domain name
+    'frontUrl' => 'http://wodrow.front.yii2mall.cn/',
+    'backUrl' => 'http://wodrow.back.yii2mall.cn/',
 ];
 ```
 
@@ -57,4 +55,4 @@ return [
 
 ##php规范
 
-    遵循(PSR)[https://github.com/hfcorriez/fig-standards]规范
+    遵循[PSR](https://github.com/hfcorriez/fig-standards)规范
