@@ -19,11 +19,13 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/style.css',
     ];
     public $js = [
+        'js/cropbox.js',
+        'js/sctp.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'dmstr\web\AdminLteAsset',
     ];
 }
