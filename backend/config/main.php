@@ -50,6 +50,21 @@ return [
         'test' => [
             'class' => 'backend\modules\test\Test',
         ],
+        'goods' =>[
+            'class'=> 'backend\modules\goods\Module',
+        ],
+        'gii'=>[
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => [
+                '127.0.0.1','192.168.0.*','::1',
+            ],
+        ],
+        'debug'=>[
+            'class' => 'yii\debug\Module',
+            'allowedIPs' => [
+                '127.0.0.1','192.168.0.*','::1',
+            ],
+        ],
     ],
     'components' => [
         'log' => [
