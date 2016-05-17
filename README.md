@@ -53,4 +53,4 @@ return [
 	布尔型的字段，以一些助动词开头，更加直接生动：如，用户是否有留言 has_message，用户是否通过检查 is_checked 等。
 	字段名为英文短语、形容词+名词或助动词+动词时态的形式表示，遵循“见名知意”的原则。
 
-##php规范遵循[PSR](https://github.com/hfcorriez/fig-standards)规范
+##php规范遵循[PSR](https://github.com/hfcorriez/fig-standards)规范，可维护性参考[要把代码编写得有自己的灵魂](http://www.yiichina.com/topic/6388)
