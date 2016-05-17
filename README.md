@@ -29,6 +29,8 @@ return [
 ];
 ```
 
+step6: install yii2-admin reference [mdmsoft/yii2-admin](https://github.com/mdmsoft/yii2-admin)
+
 ##数据库命名总规则
 
 	所有名称的字符范围为：a-z（小写字母）, 0-9 和_(下划线)。不允许使用其他字符作为名称。
