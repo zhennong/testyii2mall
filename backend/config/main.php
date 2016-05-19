@@ -53,6 +53,9 @@ return [
         'goods' =>[
             'class'=> 'backend\modules\goods\Module',
         ],
+        'cat' =>[
+            'class'=>'backend\modules\cat\Module',
+        ],
         'gii'=>[
             'class' => 'yii\gii\Module',
             'allowedIPs' => [
