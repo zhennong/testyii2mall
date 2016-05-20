@@ -61,6 +61,9 @@ return [
         'persons' => [
             'class' =>'frontend\modules\persons\Persons',
         ],
+        'show'=>[
+            'class' =>'frontend\modules\show\Show',
+        ],
     ],
     'params' => $params,
 ];
