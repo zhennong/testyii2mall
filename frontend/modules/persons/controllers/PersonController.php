@@ -3,7 +3,6 @@ namespace frontend\modules\persons\controllers;
 
 use Yii;
 use yii\web\Controller;
-use common\models\UploadForm;
 use frontend\modules\persons\models\UserInformation;
 
 
@@ -17,27 +16,6 @@ class PersonController extends Controller{
     public function actionAvatar(){
         return $this->render('avatar');
     }
-
-    /**
-     * 文件上传, 暂搁置,后续用
-     */
-    public function actionUpload(){
-        $up = new UploadForm();
-        //设置属性(上传的位置,大小,类型, 名是否要随机生成)
-        $up->set('path','./images/icon/');
-        $up->set('maxsize',2000000);
-        $up->set('allowtype',['gif','png','jpg','jpeg']);
-        $up->set('israndname',true);
-
-        if($up->upload('img')){
-            echo '<pre>';
-            var_dump($up->getFileName());
-        }else{
-            echo '<pre>';
-            var_dump($up->getErrorMsg());
-        }
-    }
-
 
 
     /**
@@ -84,7 +62,6 @@ class PersonController extends Controller{
      * 用户资料修改界面
      */
     public function actionUinfo(){
-       // $this->layout = '@app/views/person/index.php';
         return $this->render('uinfo.php');
     }
 

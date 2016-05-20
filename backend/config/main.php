@@ -70,6 +70,10 @@ return [
         ],
     ],
     'components' => [
+        'image' =>[
+            'class'  => 'yii\image\ImageDriver',
+            'driver' => 'GD',
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

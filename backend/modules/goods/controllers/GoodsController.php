@@ -2,12 +2,16 @@
 
 namespace backend\modules\goods\controllers;
 
+use Yii;
 use backend\modules\goods\models\Goods;
 use backend\modules\goods\models\GoodsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use Yii;
+use yii\web\UploadedFile;
+use common\models\ThumbImg;
+
+
 
 /**
  * GoodsController implements the CRUD actions for Goods model.
@@ -23,7 +27,7 @@ class GoodsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delet0e' => ['POST'],
                 ],
             ],
         ];
@@ -64,14 +68,40 @@ class GoodsController extends Controller
     public function actionCreate()
     {
         $model = new Goods();
+        //文件上传路径设置
+        Yii::$app->params['uploadPath'] = Yii::$app->basePath.'/web/images/uploads/';
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->goods_id]);
-        } else {
+        if ($model->load(Yii::$app->request->post())) {
+            //提交的img信息
+            $img      = UploadedFile::getInstance($model,'goods_img');
+            //img的后缀
+            $img_ext  = end(explode(".",$img->name));
+            //新的img文件名称
+            $img_new  = Yii::$app->security->generateRandomString().".{$img_ext}";
+            //原图存放的地址
+            $path     = Yii::$app->params['uploadPath'].$img_new;
+            $xthumb   = Yii::$app->params['uploadPath'].'x_'.$img_new;
+            $dthumb   = Yii::$app->params['uploadPath'].'b_'.$img_new;
+            //保存上传图片及生成缩略图
+            if($img -> saveAs($path)) {
+                $x_img = new ThumbImg($path, 200, 200, $xthumb);
+                $d_img = new ThumbImg($path, 400, 400, $dthumb);
+                $x_img->produce();
+                $d_img->produce();
+
+                //缩略图生成后删除原图
+                unlink($path);
+                $model->goods_img = '';
+                $model->goods_xthumb = '/images/uploads/x_' . $img_new;
+                $model->goods_dthumb = '/images/uploads/b_' . $img_new;
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->goods_id]);
+            }
+        }
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
     }
 
     /**

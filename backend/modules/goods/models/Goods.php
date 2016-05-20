@@ -14,7 +14,8 @@ use Yii;
  * @property integer $goods_number
  * @property string $goods_desc
  * @property string $goods_img
- * @property string $goods_thumb
+ * @property string $goods_xthumb
+ * @property string $goods_dthumb
  */
 class Goods extends \yii\db\ActiveRecord
 {
@@ -35,7 +36,8 @@ class Goods extends \yii\db\ActiveRecord
             [['cat_id', 'goods_name', 'shop_price', 'goods_desc'], 'required'],
             [['cat_id', 'shop_price', 'goods_number'], 'integer'],
             [['goods_desc'], 'string'],
-            [['goods_name', 'goods_img', 'goods_thumb'], 'string', 'max' => 255],
+            [['goods_name', 'goods_img', 'goods_xthumb', 'goods_dthumb'], 'string', 'max' => 255],
+            [['goods_img'], 'file', 'extensions'=>'jpg, gif, png'],
         ];
     }
 
@@ -52,7 +54,8 @@ class Goods extends \yii\db\ActiveRecord
             'goods_number' => 'Goods Number',
             'goods_desc' => 'Goods Desc',
             'goods_img' => 'Goods Img',
-            'goods_thumb' => 'Goods Thumb',
+            'goods_xthumb' => 'Goods Xthumb',
+            'goods_dthumb' => 'Goods Dthumb',
         ];
     }
 }

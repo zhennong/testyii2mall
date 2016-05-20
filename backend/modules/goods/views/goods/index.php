@@ -31,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'goods_number',
             // 'goods_desc:ntext',
             // 'goods_img',
-            // 'goods_thumb',
+            // 'goods_xthumb',
+            // 'goods_dthumb',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
