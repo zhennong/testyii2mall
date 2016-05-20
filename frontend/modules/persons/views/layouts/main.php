@@ -64,7 +64,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
         ],
     ]);
     $menuItemsLeft = [
-        ['label' => Yii::t('common', 'Home'), 'url' => ['/site/index']],
+        ['label' => Yii::t('common', 'Home'), 'url' => ['/show/default/index']],
         ['label' => Yii::t('common', 'Contact'), 'url' => ['/site/contact']],
         ['label' => Yii::t('common', 'About'), 'url' => ['/site/about']],
     ];
