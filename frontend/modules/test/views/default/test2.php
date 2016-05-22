@@ -7,11 +7,11 @@
  */
 use kartik\helpers\Html;
 
-$this->title = 'test1';
+$this->title = 'test2';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="test-default-test1">
+<div class="test-default-test2">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>This is the About page. You may modify the following file to customize its content:</p>
