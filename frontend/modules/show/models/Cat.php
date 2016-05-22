@@ -3,7 +3,6 @@ namespace frontend\modules\show\models;
 use Yii;
 
 class Cat extends \yii\db\ActiveRecord{
-
     public $cats = null;
     public $lv;           //下面有用到自定义的lv,不加会出错
     public $data;
@@ -40,7 +39,7 @@ class Cat extends \yii\db\ActiveRecord{
         return $this->data = $data;
     }
     public function views(){
-        
+
     }
 }
 
