@@ -16,4 +16,12 @@ class DefaultController extends TestController
     {
         return $this->render('index');
     }
+
+    /**
+     * 自定义widget
+     */
+    public function actionTest1()
+    {
+        return $this->render('test1');
+    }
 }
