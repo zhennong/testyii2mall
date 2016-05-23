@@ -5,7 +5,7 @@ use Yii;
 class Cat extends \yii\db\ActiveRecord{
     public $cats = null;
     public $lv;           //下面有用到自定义的lv,不加会出错
-    public $data;
+    public $data = [];
 
     public function  gets(){
         if(!$this->cats) {
@@ -19,6 +19,9 @@ class Cat extends \yii\db\ActiveRecord{
      * @return 返回排好顺序二维数组,取值的话,foreach取,通过lv可以判断层级
      */
     public function shows($pid =0,$lv = 0){
+        if(!empty($this->data)){
+            return $this->data;
+        }
         $data = [];
         if(!$this->cats){
             $this->gets();
@@ -38,9 +41,14 @@ class Cat extends \yii\db\ActiveRecord{
         //最后循环结束以后返回
         return $this->data = $data;
     }
-    public function views(){
-
+    public function  zao($a){
+        echo "早上好! {$a->data}<br/>";
     }
+    public static function  zhong($a){
+        echo "中午好! {$a->data}<br/>";
+    }
+
+
 }
 
 

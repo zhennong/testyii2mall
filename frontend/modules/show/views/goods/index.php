@@ -33,7 +33,7 @@
                     <td><a href="/show/goods/buy.html?goods_id=<?=$goods['goods_id']?>" class="btn btn-primary" role="button">点击购买</a></td>
                </tr>
                 <tr>
-                    <td><a href="/show/goods/index.html?goods_id=<?=$goods['goods_id']?>" class="btn btn-primary" role="button">收藏宝贝</a></td>
+                    <td><a href="/show/goods/ceshi.html?goods_id=<?=$goods['goods_id']?>" class="btn btn-primary" role="button">收藏宝贝</a></td>
 
                 </tr>
                 <tr>
