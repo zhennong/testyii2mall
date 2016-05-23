@@ -24,4 +24,12 @@ class DefaultController extends TestController
     {
         return $this->render('test1');
     }
+
+    /**
+     * 自定义组件
+     */
+    public function actionTest2()
+    {
+        return $this->render('test2');
+    }
 }
