@@ -7,6 +7,7 @@ use backend\controllers\BackendController;
 use backend\modules\user\models\UserSearch;
 use yii\web\NotFoundHttpException;
 use common\models\User;
+// use backend\modules\user\models\User;
 
 /**
  * Default controller for the `user` module
@@ -24,18 +25,19 @@ class DefaultController extends BackendController
 
     public function actionUserList()
     {
-        $dataProvider = new \yii\data\ActiveDataProvider([
-            'query'=>\common\models\User::find(),
-            'pagination' => [
-                'pagesize' => 10,
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'created_at' => SORT_DESC,
-                ]
-            ],
-        ]);
+        // $dataProvider = new \yii\data\ActiveDataProvider([
+        //     'query'=>\common\models\User::find(),
+        //     'pagination' => [
+        //         'pagesize' => 10,
+        //     ],
+        //     'sort' => [
+        //         'defaultOrder' => [
+        //             'created_at' => SORT_DESC,
+        //         ]
+        //     ],
+        // ]);
         $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $gridColumns = [
             ['class' => 'kartik\grid\SerialColumn'],
             [
@@ -88,18 +90,18 @@ class DefaultController extends BackendController
         ]);
     }
 
-    public function actionCreate()
-    {
-        $model = new User();
+    // public function actionCreate()
+    // {
+    //     $model = new User();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
+    //     if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->id]);
+    //     } else {
+    //         return $this->render('create', [
+    //             'model' => $model,
+    //         ]);
+    //     }
+    // }
 
     public function actionUpdate($id)
     {
