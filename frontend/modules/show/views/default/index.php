@@ -1,5 +1,6 @@
 <?php
 use yii\widgets\LinkPager;
+$this->title = Yii::t('common','testyii2mall');
 ?>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#">首页</a></li>

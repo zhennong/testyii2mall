@@ -75,7 +75,7 @@ class SiteController extends FrontendController
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             //登录成功后跳转
-            $this->redirect(Yii::$app->urlManager->createUrl(['/show/default/index']));
+            $this->redirect(Yii::$app->urlManager->createUrl(['/persons/person/index']));
 
         } else {
             return $this->render('login', [

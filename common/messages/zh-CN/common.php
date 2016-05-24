@@ -13,6 +13,7 @@ return [
     'reset it'=>'重置',
     'Submit'=>'提交',
     'rememberMe'=>'记住密码',
+    'Shop' => '商城',
 
     'My Company' => 'Yii2商城',
     'Home'=>'首页',

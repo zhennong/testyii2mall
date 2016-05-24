@@ -1,3 +1,6 @@
+<?php
+$this->title = Yii::t('common','testyii2mall');
+?>
 <br>
 <div class="row">
     <div class="col-md-5">
