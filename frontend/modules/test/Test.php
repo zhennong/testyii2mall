@@ -11,6 +11,7 @@ class Test extends \yii\base\Module
      * @inheritdoc
      */
     public $controllerNamespace = 'frontend\modules\test\controllers';
+    public $layout = 'main';
 
     /**
      * @inheritdoc

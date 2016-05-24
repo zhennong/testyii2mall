@@ -5,6 +5,7 @@ use yii\bootstrap\Html;
 <div class="test-default-index">
     <h1><?= $this->context->action->uniqueId ?></h1>
     <p>
+        <?=Html::a('testdefault',['/test/default/index']) ?>
         <?=Html::a('testcurd',['/test/test']) ?>
         <?=Html::a('testsocket',['/test/socket']) ?>
     </p>
