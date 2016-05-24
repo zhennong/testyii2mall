@@ -56,3 +56,5 @@ step6: configure yii2-admin reference [mdmsoft/yii2-admin](https://github.com/md
 	字段名为英文短语、形容词+名词或助动词+动词时态的形式表示，遵循“见名知意”的原则。
 
 ##php规范遵循[PSR](https://github.com/hfcorriez/fig-standards)规范，可维护性参考[要把代码编写得有自己的灵魂](http://www.yiichina.com/topic/6388)
+
+##restful思想参考[理解RESTful架构](http://www.ruanyifeng.com/blog/2011/09/restful)，[Yii2 如何实现 RESTful](http://www.getyii.com/topic/default/view/4)
