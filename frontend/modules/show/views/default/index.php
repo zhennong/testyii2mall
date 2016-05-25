@@ -3,7 +3,7 @@ use yii\widgets\LinkPager;
 $this->title = Yii::t('common','testyii2mall');
 ?>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#">首页</a></li>
+    <li class="active"><a href="#">所有</a></li>
     <?=$cats?>
 </ul>
 <br/>
@@ -11,10 +11,10 @@ $this->title = Yii::t('common','testyii2mall');
     <?php foreach($goods as $g){?>
     <div class="col-xs-6 col-md-3">
         <div class="thumbnail">
-            <img style="width: 200px;height: 200px; background-repeat: no-repeat" src="<?=Yii::$app->params['backUrl'].$g['goods_xthumb']?>">
+            <img style="width: 200px;height: 200px; background-repeat: no-repeat" src="<?=Yii::$app->params['backUrl'].$g['xthumb']?>">
             <div class="caption">
-                <p>商品名：<?=$g['goods_name']?>   &nbsp; &nbsp; &nbsp; &nbsp;&yen;<?=$g['shop_price']?>元</p>
-                <p><a href="/show/goods/index.html?goods_id=<?=$g['goods_id']?>" class="btn btn-primary" role="button">点击查看</a></p>
+                <p>商品名：<?=$g['name']?>   &nbsp; &nbsp; &nbsp; &nbsp;&yen;<?=$g['shop_price']?>元</p>
+                <p><a href="/show/goods/index.html?goods_id=<?=$g['id']?>" class="btn btn-primary" role="button">点击查看</a></p>
             </div>
         </div>
     </div>

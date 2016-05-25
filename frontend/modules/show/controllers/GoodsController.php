@@ -7,14 +7,11 @@ use frontend\modules\show\models\Cat;
 
 class GoodsController extends Controller{
 
-    const AAA = 'hello';
-
-
     /**
      * 商品展示
      */
-    public function actionIndex($goods_id){
-        $goods = Goods::findOne($goods_id);
+    public function actionIndex($gid){
+        $goods = Goods::findOne($gid);
         return $this->render('index',['goods'=>$goods]);
     }
 

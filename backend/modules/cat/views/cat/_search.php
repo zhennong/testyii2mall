@@ -15,9 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'cat_id') ?>
+    <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'cat_name') ?>
+    <?= $form->field($model, 'name') ?>
 
     <?= $form->field($model, 'pid') ?>
 

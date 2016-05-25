@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\goods\models\GoodsSearch */
@@ -24,17 +25,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'goods_id',
+            'id',
             'cat_id',
-            'goods_name',
+            'name',
             'shop_price',
-            'goods_number',
-            // 'goods_desc:ntext',
-            // 'goods_img',
-            // 'goods_xthumb',
-            // 'goods_dthumb',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'number',
+            // 'desc',
+            // 'img',
+            // 'xthumb',
+            // 'dthumb',
+            //'status',
+            [
+                'label'=>'状态',
+                'format'=>'raw',
+                'value' => function($data){
+                    return Html::dropDownList('修改状态',\backend\modules\goods\models\Goods::STATUS_UP,[\backend\modules\goods\models\Goods::STATUS_DEFAULT=>'未发布',\backend\modules\goods\models\Goods::STATUS_UP=>'上架',\backend\modules\goods\models\Goods::STATUS_DOWN=>'下架']);
+                }
+            ],
+            ['class' => 'yii\grid\ActionColumn','header'=>'操作'],
         ],
     ]); ?>
+<!--    --><?php //$form = ActiveForm::begin(); ?>
+<!--    --><?//= $form->field($searchModel, 'status')->radioList([\backend\modules\goods\models\Goods::STATUS_DEFAULT=>'未发布',\backend\modules\goods\models\Goods::STATUS_UP=>'上架',\backend\modules\goods\models\Goods::STATUS_DOWN=>'下架']) ?>
+<!--    --><?php //ActiveForm::end(); ?>
 </div>

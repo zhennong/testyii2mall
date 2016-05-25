@@ -1,24 +1,28 @@
 <?php
 
 namespace backend\modules\goods\models;
-
 use Yii;
 
 /**
  * This is the model class for table "goods".
  *
- * @property integer $goods_id
+ * @property integer $id
  * @property integer $cat_id
- * @property string $goods_name
+ * @property string $name
  * @property integer $shop_price
- * @property integer $goods_number
- * @property string $goods_desc
- * @property string $goods_img
- * @property string $goods_xthumb
- * @property string $goods_dthumb
+ * @property integer $number
+ * @property string $desc
+ * @property string $img
+ * @property string $xthumb
+ * @property string $dthumb
+ * @property integer $status
  */
 class Goods extends \yii\db\ActiveRecord
 {
+    const STATUS_DEFAULT = 0 ;
+    const STATUS_UP      = 1 ;
+    const STATUS_DOWN    = 2 ;
+
     /**
      * @inheritdoc
      */
@@ -33,11 +37,10 @@ class Goods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cat_id', 'goods_name', 'shop_price', 'goods_desc'], 'required'],
-            [['cat_id', 'shop_price', 'goods_number'], 'integer'],
-            [['goods_desc'], 'string'],
-            [['goods_name', 'goods_img', 'goods_xthumb', 'goods_dthumb'], 'string', 'max' => 255],
-            [['goods_img'], 'file', 'extensions'=>'jpg, gif, png'],
+            [['cat_id', 'name', 'shop_price', 'desc',], 'required'],
+            [['cat_id', 'shop_price', 'number', 'status'], 'integer'],
+            [['desc','xthumb', 'img','dthumb'], 'string'],
+            [['name', 'img', 'xthumb', 'dthumb'], 'string', 'max' => 255],
         ];
     }
 
@@ -47,15 +50,16 @@ class Goods extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'goods_id' => 'Goods ID',
+            'id' => 'ID',
             'cat_id' => 'Cat ID',
-            'goods_name' => 'Goods Name',
+            'name' => 'Name',
             'shop_price' => 'Shop Price',
-            'goods_number' => 'Goods Number',
-            'goods_desc' => 'Goods Desc',
-            'goods_img' => 'Goods Img',
-            'goods_xthumb' => 'Goods Xthumb',
-            'goods_dthumb' => 'Goods Dthumb',
+            'number' => 'Number',
+            'desc' => 'Desc',
+            'img' => 'Img',
+            'xthumb' => 'Xthumb',
+            'dthumb' => 'Dthumb',
+            'status' => 'Status',
         ];
     }
 }

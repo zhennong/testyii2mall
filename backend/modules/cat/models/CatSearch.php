@@ -18,8 +18,8 @@ class CatSearch extends Cat
     public function rules()
     {
         return [
-            [['cat_id', 'pid'], 'integer'],
-            [['cat_name'], 'safe'],
+            [['id', 'pid'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -47,6 +47,7 @@ class CatSearch extends Cat
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => ['pageSize' => 8],
         ]);
 
         $this->load($params);
@@ -59,11 +60,11 @@ class CatSearch extends Cat
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'cat_id' => $this->cat_id,
+            'id' => $this->id,
             'pid' => $this->pid,
         ]);
 
-        $query->andFilterWhere(['like', 'cat_name', $this->cat_name]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

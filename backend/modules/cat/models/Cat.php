@@ -7,8 +7,8 @@ use Yii;
 /**
  * This is the model class for table "cat".
  *
- * @property integer $cat_id
- * @property string $cat_name
+ * @property integer $id
+ * @property string $name
  * @property integer $pid
  */
 class Cat extends \yii\db\ActiveRecord
@@ -27,9 +27,9 @@ class Cat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cat_name'], 'required'],
+            [['name'], 'required'],
             [['pid'], 'integer'],
-            [['cat_name'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,8 +39,8 @@ class Cat extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'cat_id' => 'Cat ID',
-            'cat_name' => 'Cat Name',
+            'id' => 'ID',
+            'name' => 'Name',
             'pid' => 'Pid',
         ];
     }

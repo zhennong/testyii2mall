@@ -11,8 +11,6 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use common\models\ThumbImg;
 
-
-
 /**
  * GoodsController implements the CRUD actions for Goods model.
  */
@@ -27,7 +25,7 @@ class GoodsController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delet0e' => ['POST'],
+                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -73,7 +71,7 @@ class GoodsController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             //提交的img信息
-            $img      = UploadedFile::getInstance($model,'goods_img');
+            $img      = UploadedFile::getInstance($model,'img');
             //img的后缀
             $img_ext  = end(explode(".",$img->name));
             //新的img文件名称
@@ -91,19 +89,18 @@ class GoodsController extends Controller
 
                 //缩略图生成后删除原图
                 unlink($path);
-                $model->goods_img = '';
-                $model->goods_xthumb = '/images/uploads/x_' . $img_new;
-                $model->goods_dthumb = '/images/uploads/b_' . $img_new;
+                $model->img    = '';
+                $model->xthumb = '/images/uploads/x_' . $img_new;
+                $model->dthumb = '/images/uploads/b_' . $img_new;
             }
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->goods_id]);
+                return $this->redirect(['view', 'id' => $model->id]);
             }
         }
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
-
     /**
      * Updates an existing Goods model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -115,7 +112,7 @@ class GoodsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->goods_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
