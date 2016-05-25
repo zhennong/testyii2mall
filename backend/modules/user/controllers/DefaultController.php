@@ -49,6 +49,14 @@ class DefaultController extends BackendController
                 'contentOptions'=>['class'=>'kv-sticky-column'],
                 'editableOptions'=>['header'=>'Name', 'size'=>'md']
             ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'auth_key',
+            ],
+            [
+                'class' => 'kartik\grid\EditableColumn',
+                'attribute' => 'email',
+            ],
             /*[
                 'attribute'=>'color',
                 'value'=>function ($model, $key, $index, $widget) {

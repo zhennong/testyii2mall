@@ -9,6 +9,8 @@ use frontend\modules\persons\models\Area;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\User;
+use common\models\AccountForm;
 
 /**
  * UserInfoController implements the CRUD actions for UserInformation model.
@@ -127,4 +129,6 @@ class UserInformationController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+
 }
