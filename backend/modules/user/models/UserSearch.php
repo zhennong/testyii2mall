@@ -36,6 +36,9 @@ class UserSearch extends User
         // add conditions that should always apply here
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pagesize' => '10',
+         ]
         ]);
         $this->load($params);
         if (!$this->validate()) {
