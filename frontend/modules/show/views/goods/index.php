@@ -4,7 +4,7 @@ $this->title = Yii::t('common','testyii2mall');
 <br>
 <div class="row">
     <div class="col-md-5">
-        <img src="http://admin.yshop.com<?=$goods['dthumb']?>" alt="">
+        <img src=<?=Yii::$app->params['backUrl'].$goods['dthumb']?> alt="">
     </div>
     <div class="col-md-5">
             <table class="table">
