@@ -4,6 +4,7 @@ namespace frontend\modules\show\controllers;
 use yii\web\Controller;
 use frontend\modules\show\models\Goods;
 use frontend\modules\show\models\Cat;
+use yii\web\NotFoundHttpException;
 
 class GoodsController extends Controller{
 
@@ -12,7 +13,11 @@ class GoodsController extends Controller{
      */
     public function actionIndex($goods_id){
         $goods = Goods::findOne($goods_id);
-        return $this->render('index',['goods'=>$goods]);
+        if ($goods){
+            return $this->render('index',['goods'=>$goods]);
+        }else{
+            throw new NotFoundHttpException();
+        }
     }
 
     /**

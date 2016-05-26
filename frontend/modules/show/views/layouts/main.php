@@ -147,6 +147,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
                     <?=$data?>
                 </ul>
             </div>
+            <br>
             <div class="row">
                 <?= $content ?>
             </div>
