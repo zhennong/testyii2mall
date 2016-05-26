@@ -17,8 +17,8 @@ class Show extends \yii\base\Module
      */
     public function init()
     {
+        $this->layout = 'main.php';
         parent::init();
 
-        // custom initialization code goes here
     }
 }

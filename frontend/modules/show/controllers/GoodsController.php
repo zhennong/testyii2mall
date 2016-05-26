@@ -10,8 +10,8 @@ class GoodsController extends Controller{
     /**
      * 商品展示
      */
-    public function actionIndex($gid){
-        $goods = Goods::findOne($gid);
+    public function actionIndex($goods_id){
+        $goods = Goods::findOne($goods_id);
         return $this->render('index',['goods'=>$goods]);
     }
 

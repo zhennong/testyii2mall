@@ -2,11 +2,6 @@
 use yii\widgets\LinkPager;
 $this->title = Yii::t('common','testyii2mall');
 ?>
-<ul class="nav nav-tabs">
-    <li class="active"><a href="#">所有</a></li>
-    <?=$cats?>
-</ul>
-<br/>
 <div class="row">
     <?php foreach($goods as $g){?>
     <div class="col-xs-6 col-md-3">
