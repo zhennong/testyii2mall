@@ -9,12 +9,18 @@ use yii\data\Pagination;
 
 class CatController extends Controller{
 
-    public function actionIndex($cat_id){
+    //每页显示的条数，可以在这里直接修改
+    public $pageSize = 3;
 
+    /**
+     * 栏目展示
+     * @return string
+     */
+    public function actionIndex($cat_id){
+        //如果是二级的栏目，取出pid为这个值的cat_id
         $cat   = new Cat();
         $data  = $cat_id.',';
         $cats  = $cat->find()->select(['id'])->where(['pid'=>$cat_id])->all();
-
         if(empty($cats)){
             $data =$cat_id;
         }else{
@@ -23,24 +29,22 @@ class CatController extends Controller{
             }
             $data  = rtrim($data,',');
         }
+        $db = Yii::$app->db;
         $sql  = 'SELECT * FROM goods WHERE `cat_id` IN ('.$data.') AND `status`=1';
-        $goods = Goods::findBySql($sql)
-            ->all();
+        $goods = $db->createCommand($sql)->queryAll();
         if (empty($goods)){
             return $this->render('empty');
         }else{
+            //分页
             $pages = new Pagination([
                 //每页要显示的条数
-                'defaultPageSize'=>3,
-                'totalCount' => Goods::findBySql($sql)->count(),
+                'defaultPageSize'=>$this->pageSize,
+                'totalCount' => $db->createCommand($sql)->query()->count(),
             ]);
-            $data = Goods::findBySql($sql)
-                ->orderBy('id')
-                ->offset($pages->offset)
-                ->limit($pages->limit)
-                ->all();
+            $sql1 = 'SELECT * FROM goods WHERE `cat_id` IN ('.$data.') AND `status`=1 LIMIT '.$pages->limit.' OFFSET '.$pages->offset;
+            $dats = $db->createCommand($sql1)->queryAll();
             return $this->render('index',[
-                'goods'=>$data,
+                'goods'=>$dats,
                 'pages' => $pages,
             ]);
         }

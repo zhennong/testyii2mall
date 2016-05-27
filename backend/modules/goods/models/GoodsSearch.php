@@ -18,8 +18,8 @@ class GoodsSearch extends Goods
     public function rules()
     {
         return [
-            [['goods_id', 'cat_id', 'shop_price', 'goods_number'], 'integer'],
-            [['goods_name', 'goods_desc', 'goods_img', 'goods_xthumb', 'goods_dthumb'], 'safe'],
+            [['id', 'cat_id', 'shop_price', 'number'], 'integer'],
+            [['name', 'desc', 'img', 'xthumb', 'dthumb'], 'safe'],
         ];
     }
 
@@ -59,17 +59,17 @@ class GoodsSearch extends Goods
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'goods_id' => $this->goods_id,
+            'id' => $this->id,
             'cat_id' => $this->cat_id,
             'shop_price' => $this->shop_price,
-            'goods_number' => $this->goods_number,
+            'number' => $this->number,
         ]);
 
-        $query->andFilterWhere(['like', 'goods_name', $this->goods_name])
-            ->andFilterWhere(['like', 'goods_desc', $this->goods_desc])
-            ->andFilterWhere(['like', 'goods_img', $this->goods_img])
-            ->andFilterWhere(['like', 'goods_xthumb', $this->goods_xthumb])
-            ->andFilterWhere(['like', 'goods_dthumb', $this->goods_dthumb]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'desc', $this->desc])
+            ->andFilterWhere(['like', 'img', $this->img])
+            ->andFilterWhere(['like', 'xthumb', $this->xthumb])
+            ->andFilterWhere(['like', 'dthumb', $this->dthumb]);
 
         return $dataProvider;
     }
