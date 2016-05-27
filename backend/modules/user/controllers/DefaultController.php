@@ -134,7 +134,7 @@ class DefaultController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['user-list']);
     }
 
     protected function findModel($id)
