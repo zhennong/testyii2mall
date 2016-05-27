@@ -46,6 +46,7 @@ class GoodsSearch extends Goods
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
+            'pagination' => ['pageSize' => 8],
             'query' => $query,
         ]);
 
