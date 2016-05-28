@@ -24,7 +24,9 @@ class GoodsController extends Controller{
      * 商品购买
      */
     public function actionBuy($goods_id){
-        return $this->render('buy',['goods'=>$goods_id]);
+        $goods = Goods::findOne($goods_id);
+//        var_dump($goods);exit();
+        return $this->render('buy',['goods'=>$goods]);
     }
 
     public function actionCeshi(){
