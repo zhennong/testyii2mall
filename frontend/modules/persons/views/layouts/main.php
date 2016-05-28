@@ -18,6 +18,8 @@ $name   = Yii::$app->user->identity->username;      //获取会员名
 $nick   = $name;                                    //用户名默认为会员名
 $img    = '/images/user2-160x160.jpg';              //头像默认图片地址
 $crop   = "/persons/user-information/create.html";  //默认设置为创建资料连接
+$change_pwd = "/site/request-password-reset.html";//默认设置为修改密码
+$receipt_address = "/persons/receipt-address/index.html";//默认设置为收货地址
 $cinfo  = Yii::t('common','Create data');           //对应默认的子是创建资料
 $uinfo  = UserInformation::findOne($uid);
 
@@ -160,9 +162,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
                     <a href="#" class="list-group-item">购买历史</a>
                     <a href="#" class="list-group-item">我的收藏</a>
                     <a href="#" class="list-group-item">我的积分</a>
-                    <a href="#" class="list-group-item">修改密码</a>
+                    <a href="<?=$change_pwd?>" class="list-group-item">修改密码</a>
                     <a href="#" class="list-group-item">我的优惠券</a>
-                    <a href="#" class="list-group-item">我的收货地址</a>
+                    <a href="<?=$receipt_address?>" class="list-group-item">我的收货地址</a>
                 </div>
             </div>
             <!-- 左侧菜单栏 end-->

@@ -28,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => $gridColumns,
         'toolbar' =>  [
                     ['content'=>
-                        Html::a(Icon::show('fa fa-repeat'), ['grid-demo'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', 'Reset Grid')])
+                        Html::a('<i class="glyphicon glyphicon-plus"></i>',['create'], ['type'=>'button', 'title'=>Yii::t('kvgrid', '添加用户'), 'class'=>'btn btn-success']) . ' '.
+                        Html::a(Icon::show('fa fa-repeat'), ['user-list'], ['data-pjax'=>0, 'class' => 'btn btn-default', 'title'=>Yii::t('kvgrid', '刷新本页')])
                     ],
                     '{toggleData}',
                     '{export}',

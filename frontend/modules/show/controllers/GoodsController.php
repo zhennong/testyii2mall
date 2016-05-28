@@ -4,22 +4,29 @@ namespace frontend\modules\show\controllers;
 use yii\web\Controller;
 use frontend\modules\show\models\Goods;
 use frontend\modules\show\models\Cat;
+use yii\web\NotFoundHttpException;
 
 class GoodsController extends Controller{
 
     /**
      * 商品展示
      */
-    public function actionIndex($gid){
-        $goods = Goods::findOne($gid);
-        return $this->render('index',['goods'=>$goods]);
+    public function actionIndex($goods_id){
+        $goods = Goods::findOne($goods_id);
+        if ($goods){
+            return $this->render('index',['goods'=>$goods]);
+        }else{
+            throw new NotFoundHttpException();
+        }
     }
 
     /**
      * 商品购买
      */
     public function actionBuy($goods_id){
-        return $this->render('buy',['goods'=>$goods_id]);
+        $goods = Goods::findOne($goods_id);
+//        var_dump($goods);exit();
+        return $this->render('buy',['goods'=>$goods]);
     }
 
     public function actionCeshi(){

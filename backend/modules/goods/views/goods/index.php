@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
@@ -24,28 +23,39 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
             'cat_id',
             'name',
             'shop_price',
             'number',
-            // 'desc',
-            // 'img',
-            // 'xthumb',
-            // 'dthumb',
-            //'status',
             [
                 'label'=>'状态',
                 'format'=>'raw',
                 'value' => function($data){
-                    return Html::dropDownList('修改状态',\backend\modules\goods\models\Goods::STATUS_UP,[\backend\modules\goods\models\Goods::STATUS_DEFAULT=>'未发布',\backend\modules\goods\models\Goods::STATUS_UP=>'上架',\backend\modules\goods\models\Goods::STATUS_DOWN=>'下架']);
+                    return Html::dropDownList(
+                        $data->id,$data->status,//\backend\modules\goods\models\Goods::STATUS_DEFAULT,
+                        [\backend\modules\goods\models\Goods::STATUS_DEFAULT=>'未发布',\backend\modules\goods\models\Goods::STATUS_UP=>'上架',\backend\modules\goods\models\Goods::STATUS_DOWN=>'下架'],
+                        ['onchange' => 'Opt(this.value,this)']
+                    );
                 }
             ],
             ['class' => 'yii\grid\ActionColumn','header'=>'操作'],
         ],
     ]); ?>
-<!--    --><?php //$form = ActiveForm::begin(); ?>
-<!--    --><?//= $form->field($searchModel, 'status')->radioList([\backend\modules\goods\models\Goods::STATUS_DEFAULT=>'未发布',\backend\modules\goods\models\Goods::STATUS_UP=>'上架',\backend\modules\goods\models\Goods::STATUS_DOWN=>'下架']) ?>
-<!--    --><?php //ActiveForm::end(); ?>
 </div>
+<script>
+    function Opt(str,dom){
+        $.ajax({
+            url  : "/goods/goods/up-status.html",
+            type : 'post',
+            data : {'id':$(dom).attr('name')  , 'status':str},
+            datatype : "text",
+            complete: function(XMLHttpRequest, textStatus){
+                alert(XMLHttpRequest.responseText);
+            },
+            //调用出错执行的函数
+            error: function(){
+                alert('修改失败');
+            }
+        });
+    }
+</script>

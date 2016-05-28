@@ -68,17 +68,31 @@ class User extends ActiveRecord implements IdentityInterface
             'email_validate_code' => Yii::t('common', 'Email Validate Code'),
         ];
     }
-
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
+            [['username', 'email'], 'required'],
+            [['status', 'created_at', 'updated_at', 'is_admin'], 'integer'],
+            [['username', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['auth_key', 'email_validate_code'], 'string', 'max' => 32],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
         ];
     }
+
+    /**
+     * @inheritdoc
+     */
+//    public function rules()
+//    {
+//        return [
+//            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+//            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+//        ];
+//    }
 
     /**
      * @inheritdoc

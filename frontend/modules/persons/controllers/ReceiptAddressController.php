@@ -3,19 +3,16 @@
 namespace frontend\modules\persons\controllers;
 
 use Yii;
-use frontend\modules\persons\models\UserInformation;
-use frontend\modules\persons\models\UserInformationSearch;
-use frontend\modules\persons\models\Area;
+use frontend\modules\persons\models\ReceiptAddress;
+use frontend\modules\persons\models\ReceiptAddressSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\User;
-use common\models\AccountForm;
 
 /**
- * UserInfoController implements the CRUD actions for UserInformation model.
+ * ReceiptAddressController implements the CRUD actions for ReceiptAddress model.
  */
-class UserInformationController extends Controller
+class ReceiptAddressController extends Controller
 {
     /**
      * @inheritdoc
@@ -33,14 +30,14 @@ class UserInformationController extends Controller
     }
 
     /**
-     * Lists all UserInformation models.
+     * Lists all ReceiptAddress models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UserInformationSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $uid =Yii::$app->user->identity->id;
+        $searchModel = new ReceiptAddressSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$uid);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -48,7 +45,7 @@ class UserInformationController extends Controller
     }
 
     /**
-     * Displays a single UserInformation model.
+     * Displays a single ReceiptAddress model.
      * @param integer $id
      * @return mixed
      */
@@ -60,29 +57,25 @@ class UserInformationController extends Controller
     }
 
     /**
-     * Creates a new UserInformation model.
+     * Creates a new ReceiptAddress model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new UserInformation();
-        if($model->load(Yii::$app->request->post())){
-            $uid = Yii::$app->user->id;
-            $model->user_id = $uid;
-            $model->avatar = "/images/icon/uid{$uid}.png";
-            $model->area_id = $_POST['UserInformation']['area_id'];
-            $model->created_at = time();
-            $model->updated_at = time();
-            if($model->save()){
-                return $this->redirect(['view', 'id' => $model->user_id]);
-            }
+        $model = new ReceiptAddress();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
         }
-        return $this->render('create',['model'=>$model]);
     }
 
     /**
-     * Updates an existing UserInformation model.
+     * Updates an existing ReceiptAddress model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -90,19 +83,18 @@ class UserInformationController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if($model->load(Yii::$app->request->post())){
-            $model->area_id = $_POST['UserInformation']['area_id'];
-            $model->updated_at = time();
-            //var_dump($_POST);exit();
-            if($model->save()){
-                return $this->redirect(['view', 'id' => $model->user_id]);
-            }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
         }
-        return $this->render('update',['model'=>$model]);
     }
 
     /**
-     * Deletes an existing UserInformation model.
+     * Deletes an existing ReceiptAddress model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -115,20 +107,18 @@ class UserInformationController extends Controller
     }
 
     /**
-     * Finds the UserInformation model based on its primary key value.
+     * Finds the ReceiptAddress model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return UserInformation the loaded model
+     * @return ReceiptAddress the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = UserInformation::findOne($id)) !== null) {
+        if (($model = ReceiptAddress::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
-
 }

@@ -39,11 +39,26 @@ class GoodsController extends Controller
     {
         $searchModel = new GoodsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    /**
+     * 是否上架的修改
+     */
+    public function actionUpStatus(){
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            $id = $data['id'];
+            $status = $data['status'];
+            $goods = Goods::findOne($id);
+            $goods->status = $status;
+            if ($goods->save()) {
+                return "修改成功";
+            }
+        }
     }
 
     /**

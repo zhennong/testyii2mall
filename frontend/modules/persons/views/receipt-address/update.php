@@ -3,14 +3,14 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\user\models\User */
+/* @var $model frontend\modules\persons\models\ReceiptAddress */
 
-$this->title = '更新用户: ' . $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = '更新收获地址 ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Receipt Addresses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="user-update">
+<div class="receipt-address-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

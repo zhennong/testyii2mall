@@ -1,16 +1,16 @@
 <?php
 
-namespace backend\modules\goods\models;
+namespace frontend\modules\persons\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\modules\goods\models\Goods;
+use frontend\modules\persons\models\ReceiptAddress;
 
 /**
- * GoodsSearch represents the model behind the search form about `backend\modules\goods\models\Goods`.
+ * ReceiptAddressSearch represents the model behind the search form about `frontend\modules\persons\models\ReceiptAddress`.
  */
-class GoodsSearch extends Goods
+class ReceiptAddressSearch extends ReceiptAddress
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class GoodsSearch extends Goods
     public function rules()
     {
         return [
-            [['id', 'cat_id', 'shop_price', 'number'], 'integer'],
-            [['name', 'desc', 'img', 'xthumb', 'dthumb'], 'safe'],
+            [['id', 'uid'], 'integer'],
+            [['consignee', 'telephone', 'receipt', 'address'], 'safe'],
         ];
     }
 
@@ -39,14 +39,13 @@ class GoodsSearch extends Goods
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id)
     {
-        $query = Goods::find();
+        $query = ReceiptAddress::find()->where(['uid'=>$id]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'pagination' => ['pageSize' => 8],
             'query' => $query,
         ]);
 
@@ -61,16 +60,13 @@ class GoodsSearch extends Goods
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'cat_id' => $this->cat_id,
-            'shop_price' => $this->shop_price,
-            'number' => $this->number,
+            'uid' => $this->uid,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'desc', $this->desc])
-            ->andFilterWhere(['like', 'img', $this->img])
-            ->andFilterWhere(['like', 'xthumb', $this->xthumb])
-            ->andFilterWhere(['like', 'dthumb', $this->dthumb]);
+        $query->andFilterWhere(['like', 'consignee', $this->consignee])
+            ->andFilterWhere(['like', 'telephone', $this->telephone])
+            ->andFilterWhere(['like', 'receipt', $this->receipt])
+            ->andFilterWhere(['like', 'address', $this->address]);
 
         return $dataProvider;
     }

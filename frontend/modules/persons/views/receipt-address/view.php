@@ -4,12 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\user\models\User */
-$this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+/* @var $model frontend\modules\persons\models\ReceiptAddress */
+
+$this->title = "查看收获地址" .$model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Receipt Addresses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-view">
+<div class="receipt-address-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -28,16 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            'email:email',
-            'status',
-            'created_at',
-            'updated_at',
-            'is_admin',
-            'email_validate_code:email',
+            'uid',
+            'consignee',
+            'telephone',
+            'receipt',
+            'address',
         ],
     ]) ?>
 
