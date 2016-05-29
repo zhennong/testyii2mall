@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\modules\test\models\TestSearch */
@@ -22,10 +22,26 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+            ],
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
+            [
+                'class' => 'yii\grid\DataColumn', // 默认可省略
+                'attribute'=>'id',
+                'enableSorting'=>true,
+                'value' => function ($data) {
+                    return $data->id;
+                },
+            ],
+            [
+                'class' => 'yii\grid\DataColumn', // 默认可省略
+                'attribute'=>'name',
+                'enableSorting'=>false,
+                'value' => function ($data) {
+                    return $data->name;
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
