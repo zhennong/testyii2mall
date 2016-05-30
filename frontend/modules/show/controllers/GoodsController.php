@@ -1,10 +1,12 @@
 <?php
 namespace frontend\modules\show\controllers;
 
+use yii;
 use yii\web\Controller;
 use frontend\modules\show\models\Goods;
 use frontend\modules\show\models\Cat;
 use yii\web\NotFoundHttpException;
+use frontend\modules\persons\models\ReceiptAddress;
 
 class GoodsController extends Controller{
 
@@ -25,9 +27,21 @@ class GoodsController extends Controller{
      */
     public function actionBuy($goods_id){
         $goods = Goods::findOne($goods_id);
-//        var_dump($goods);exit();
-        return $this->render('buy',['goods'=>$goods]);
+        $id    = Yii::$app->user->id;
+        //取出收货信息
+        $addr  = ReceiptAddress::find()->where(['uid'=>$id])->all();
+        if (empty($addr)){
+            $so = 0;
+        }else{
+            $so = 1;
+        }
+        return $this->render('buy',['goods'=>$goods,'id'=>$id, 'gid'=>$goods_id,'so'=>$so,'addr'=>$addr,]);
     }
+
+
+
+
+
 
     public function actionCeshi(){
         echo "这是事件处理<br>";

@@ -66,17 +66,20 @@ class SiteController extends FrontendController
      *
      * @return mixed
      */
-    public function actionLogin()
+    public function actionLogin($c=null,$v=null)
     {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            //登录成功后跳转
-            $this->redirect(Yii::$app->urlManager->createUrl(['/persons/person/index']));
-
+        //登录成功后跳转
+        if ($model->load(Yii::$app->request->post())){
+            //获取登录前点击过来的页面地址
+            $url = Yii::$app->request->post()['url'];
+            if($model->login()) {
+                $this->redirect($url);
+            }
         } else {
             return $this->render('login', [
                 'model' => $model,

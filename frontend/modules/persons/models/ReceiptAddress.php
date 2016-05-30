@@ -30,7 +30,7 @@ class ReceiptAddress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['uid', 'consignee', 'telephone', 'receipt', 'address'], 'required'],
+            [['consignee', 'telephone', 'receipt', 'address'], 'required'],
             [['uid'], 'integer'],
             [['consignee', 'telephone', 'receipt'], 'string', 'max' => 30],
             [['address'], 'string', 'max' => 32],
@@ -44,7 +44,6 @@ class ReceiptAddress extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'uid' => '用户id',
             'consignee' => '收货人',
             'telephone' => '手机号码',
             'receipt' => '邮编',

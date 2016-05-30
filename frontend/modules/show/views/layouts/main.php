@@ -11,22 +11,25 @@ use kartik\icons\Icon;
 use frontend\modules\persons\models\UserInformation;
 
 //默认模板个别变量设置
-$uid    = Yii::$app->user->id;                      //用户id
-$name   = Yii::$app->user->identity->username;      //获取会员名
-$nick   = $name;                                    //用户名默认为会员名
-$img    = '/images/user2-160x160.jpg';              //头像默认图片地址
-$crop   = "/persons/user-information/create.html";  //默认设置为创建资料连接
-$cinfo  = Yii::t('common','Create data');           //对应默认的子是创建资料
-$uinfo  = UserInformation::findOne($uid);
+//var_dump(Yii::$app->user->id);exit();
+if ($uid = Yii::$app->user->id){
+    $name   = Yii::$app->user->identity->username;      //获取会员名
+    $nick   = $name;                                    //用户名默认为会员名
+    $img    = '/images/user2-160x160.jpg';              //头像默认图片地址
+    $crop   = "/persons/user-information/create.html";  //默认设置为创建资料连接
+    $cinfo  = Yii::t('common','Create data');           //对应默认的子是创建资料
+    $uinfo  = UserInformation::findOne($uid);
 
-if($uinfo) {
-    $nick   = $uinfo->nickname;
-    $cinfo  = Yii::t('common','Edit data');
-    $crop   = "/persons/user-information/view.html?id={$uid}";
-    if($uinfo->avatar) {
-        $img = $uinfo->avatar;
+    if($uinfo) {
+        $nick   = $uinfo->nickname;
+        $cinfo  = Yii::t('common','Edit data');
+        $crop   = "/persons/user-information/view.html?id={$uid}";
+        if($uinfo->avatar) {
+            $img = $uinfo->avatar;
+        }
     }
 }
+//用户id
 
 $this->title = Yii::t('common','testyii2mall');
 
@@ -141,6 +144,28 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('');
     NavBar::end();
     ?>
     <div class="container">
+        <!-- 头部搜索框 start -->
+        <div class="row">
+            <div class="col-md-3">
+                <b>
+                    搜索商品..
+                </b>
+            </div>
+            <div class="col-md-9">
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search..."
+                        />
+                        <span class="input-group-btn">
+                            <button type='submit' name='search' id='search-btn' class="btn btn-flat">
+                                <?= Icon::show('search') ?>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
             <div class="row">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#">所有</a></li>

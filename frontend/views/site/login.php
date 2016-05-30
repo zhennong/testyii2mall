@@ -8,6 +8,8 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
+//这个能获取到上一个页面的url，为登录后跳回做准备
+$url = Yii::$app->request->referrer;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -29,6 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
 
             <?= $form->field($model, 'rememberMe')->checkbox() ?>
+
+            <input type="hidden" name="url" value="<?=$url?>">
 
             <div style="color:#999;margin:1em 0">
                 <?=Yii::t('common','If you forgot your password you can ')?><?= Html::a(Yii::t('common','reset it'), ['site/request-password-reset']) ?>.

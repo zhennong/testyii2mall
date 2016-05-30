@@ -65,8 +65,12 @@ class ReceiptAddressController extends Controller
     {
         $model = new ReceiptAddress();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->uid = Yii::$app->user->id;
+            $url = Yii::$app->request->post()['url'];
+            if ($model->save()){
+                return $this->redirect($url);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -83,9 +87,12 @@ class ReceiptAddressController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->uid = Yii::$app->user->id;
+            $url = Yii::$app->request->post()['url'];
+            if ($model->save()){
+                return $this->redirect($url);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,
