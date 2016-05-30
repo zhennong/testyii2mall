@@ -30,6 +30,11 @@
             <tr class="active">
                 <td colspan="4"><a href="/site/login.html">登录</a> 后才能下单哦！</td>
             </tr>
+            <tr>
+                <td colspan="4" class="text-right">
+                    <button type="button" class="btn  btn-success" disabled="disabled">确认购买</button>
+                </td>
+            </tr>
         <?}else{?>
         </tbody>
     </table>
