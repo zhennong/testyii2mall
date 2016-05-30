@@ -102,8 +102,11 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-
 <?php $this->endBody() ?>
+<?php if (isset($this->blocks['extend'])): ?>
+    <?= $this->blocks['extend'] ?>
+<?php else: ?>
+<?php endif; ?>
 </body>
 </html>
 <?php $this->endPage() ?>

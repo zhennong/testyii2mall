@@ -10,9 +10,14 @@ use kartik\grid\GridView;
 $this->title = Yii::t('common', 'Tests');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php $this->beginBlock('extend'); ?>
+<?php $this->endBlock(); ?>
+
 <div class="test-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <h6></h6>
     <?=$this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -45,5 +50,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
+        'responsive'=>true,
+        'hover'=>true,
+        /*'pjax'=>true,
+        'pjaxSettings'=>[
+            'neverTimeout'=>true,
+            'beforeGrid'=>'My fancy content before.',
+            'afterGrid'=>'My fancy content after.',
+        ],*/
     ]); ?>
 </div>
