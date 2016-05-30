@@ -29,7 +29,8 @@
         "kartik-v/yii2-editable": "@dev",
         "kartik-v/yii2-dialog": "@dev",
         "kartik-v/yii2-export": "@dev",
-        "kartik-v/yii2-datecontrol": "@dev"
+        "kartik-v/yii2-datecontrol": "@dev",
+        "kartik-v/yii2-widget-colorinput": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
