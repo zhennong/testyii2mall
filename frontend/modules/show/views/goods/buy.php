@@ -17,7 +17,7 @@
         <tr>
             <td><?=$goods['name']?></td>
             <td><img style="width: 50px;height: 50px;" src="<?=Yii::$app->params['backUrl'].$goods['xthumb']?>"></td>
-            <td>共<button id="down" onclick="dj()"> - </button>&nbsp;<input style="width:30px;"  type="text" value="1" id="dbox">&nbsp;&nbsp;<button onclick="dz()">+</button>件</td>
+            <td>共<button id="down" onclick="dj()"> - </button>&nbsp;<input style="width:30px;"  type="text" value="<?=$num?>" id="dbox">&nbsp;&nbsp;<button onclick="dz()">+</button>件</td>
 
             <td><?=$goods['shop_price']?></td>
         </tr>
@@ -25,7 +25,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td id="bbb">总计 : &yen;<?=$goods['shop_price']?>元</td>
+            <td id="bbb">总计 : &yen;<?=$num*$goods['shop_price']?>元</td>
         </tr>
         <?php if(is_null($id)){?>
             <tr class="active">
@@ -48,6 +48,7 @@
     <table class="table" style="text-align: center">
         <thead>
         <tr class="active">
+            <td>选择</td>
             <td>收货人</td>
             <td>电话</td>
             <td>邮编</td>
@@ -57,33 +58,35 @@
         <tbody>
         <?php if(!$so){?>
             <tr>
-                <td colspan="4">您还没有默认的收货地址&nbsp;&nbsp;  <a href="/persons/receipt-address/create.html"> (去添加）</a></td>
+                <td colspan="5">您还没有默认的收货地址&nbsp;&nbsp;  <a href="/persons/receipt-address/create.html"> (去添加）</a></td>
             </tr>
             <tr>
-                <td colspan="4" class="text-right">
+                <td colspan="5" class="text-right">
                     <button type="button" class="btn  btn-success" disabled="disabled">确认购买</button>
                 </td>
             </tr>
         <?php } else{?>
         <?php foreach ($addr as $a){?>
             <tr>
+                <td><input  type="radio" name="ok"></td>
                 <td><?=$a['consignee']?></td>
                 <td><?=$a['telephone']?></td>
                 <td><?=$a['receipt']?></td>
-                <td><?=$a['address']?></td>
+                <td><?=$a['address']?> &nbsp;&nbsp;&nbsp;&nbsp;(<a href="/persons/receipt-address/update.html?id=<?=$a['id']?>">修改</a>)</td>
                 <?php $aid = $a['id']?>
             </tr>
         <?php }?>
             <tr>
-                <td colspan="4" class="text-right"><a href="/persons/receipt-address/update.html?id=<?=$id?>">修改</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="">添加</a></td>
+                <td colspan="5" class="text-right">
+                    &nbsp;&nbsp;&nbsp;&nbsp; <a href="/persons/receipt-address/create.html"><b>添加</b></a></td>
             </tr>
             <form action="" method="post">
                 <tr>
                     <input type="hidden" name="uid" value="<?=$id?>">
                     <input type="hidden" name="gid" value="<?=$gid?>">
                     <input type="hidden" name="aid" value="<?=$aid?>">
-                    <input type="hidden" name="num" id="num" value="1">
-                    <td colspan="4" class="text-right"><button type="submit" class="btn btn-success">确认购买</button></td>
+                    <input type="hidden" name="num" id="num" value="<?=$num?>">
+                    <td colspan="5" class="text-right"><button type="submit" class="btn btn-success">确认购买</button></td>
                 </tr>
             </form>
         <?php }?>
@@ -104,7 +107,6 @@
         if(parseInt(a.value) > 1){
             a.value = parseInt(a.value) - 1;
             hidd.value = a.value;
-            console.log(hidd.value);
             var num =  a.value * pice;
             b.innerHTML ='总计 &yen; '+ num +' 元';
         }
@@ -113,7 +115,6 @@
         var a = document.getElementById('dbox');
         a.value = parseInt(a.value) + 1;
         hidd.value = a.value;
-        console.log(hidd.value);
         var num =  a.value * pice;
         b.innerHTML ='总计 &yen; '+ num +' 元';
     }

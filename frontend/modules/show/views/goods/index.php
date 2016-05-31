@@ -33,18 +33,37 @@ $this->title = Yii::t('common','testyii2mall');
                     <td><?=$goods['number']?></td>
                 </tr>
                 <tr>
-                    <td><a href="/show/goods/buy.html?goods_id=<?=$goods['id']?>" class="btn btn-primary" role="button">点击购买</a></td>
-               </tr>
-                <tr>
-                    <td><a href="/show/goods/ceshi.html?goods_id=<?=$goods['id']?>" class="btn btn-primary" role="button">收藏宝贝</a></td>
-
+                    <td>选择数量：</td>
+                    <td><button id="down" onclick="dj()"> - </button>&nbsp;<input style="width:30px;"  type="text" value="1" id="dbox">&nbsp;&nbsp;<button onclick="dz()">+</button></td>
                 </tr>
                 <tr>
-                    <td><a class="btn btn-primary" role="button" onclick="Add()">加入购物车</a></td>
+                    <td>
+                        <a id="url" href="/show/goods/buy.html?goods_id=<?=$goods['id']?>&num=1" class="btn btn-primary" role="button">点击购买</a>
+                        &nbsp;&nbsp;<a class="btn btn-primary" role="button" onclick="Add()">加入购物车</a>
+                        &nbsp;&nbsp;<a href="/show/goods/ceshi.html?goods_id=<?=$goods['id']?>" class="btn btn-primary" role="button">收藏宝贝</a>
+                    </td>
                 </tr>
             </table>
      </div>
     <script>
+        var url = document.getElementById('url');
+        //数量加减
+        function dj(){
+            //获取数量的input标签
+            var a = document.getElementById('dbox');
+            if(parseInt(a.value) > 1){
+                a.value = parseInt(a.value) - 1;
+                url.href = '';
+                url.href = "/show/goods/buy.html?goods_id=<?=$goods['id']?>&num=" +a.value;
+            }
+        }
+        function dz() {
+            var a = document.getElementById('dbox');
+            a.value = parseInt(a.value) + 1;
+            url.href = '';
+            url.href = "/show/goods/buy.html?goods_id=<?=$goods['id']?>&num=" +a.value;
+        }
+        //加入购物车
         function Add(){
             $.ajax({
                 url  : "/goods/goods/up-status.html",
