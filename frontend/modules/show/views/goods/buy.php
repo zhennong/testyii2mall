@@ -1,4 +1,3 @@
-<div class ="row">
     <p class="center-block">
     <h3 class="text-warning text-left">订单详情</h3>
     </p>
@@ -66,26 +65,26 @@
                 </td>
             </tr>
         <?php } else{?>
+            <form action="/show/order/index.html" method="post">
         <?php foreach ($addr as $a){?>
             <tr>
-                <td><input  type="radio" name="ok"></td>
+                <td><input  type="radio" name="receipt_id" checked="checked" value="<?=$a['id']?>"></td>
                 <td><?=$a['consignee']?></td>
                 <td><?=$a['telephone']?></td>
                 <td><?=$a['receipt']?></td>
-                <td><?=$a['address']?> &nbsp;&nbsp;&nbsp;&nbsp;(<a href="/persons/receipt-address/update.html?id=<?=$a['id']?>">修改</a>)</td>
-                <?php $aid = $a['id']?>
+                <td><?=$a['address']?> &nbsp;&nbsp;&nbsp;&nbsp;
+                    (<a href="/persons/receipt-address/update.html?id=<?=$a['id']?>">修改</a>)</td>
             </tr>
         <?php }?>
             <tr>
                 <td colspan="5" class="text-right">
                     &nbsp;&nbsp;&nbsp;&nbsp; <a href="/persons/receipt-address/create.html"><b>添加</b></a></td>
             </tr>
-            <form action="" method="post">
                 <tr>
                     <input type="hidden" name="uid" value="<?=$id?>">
                     <input type="hidden" name="gid" value="<?=$gid?>">
-                    <input type="hidden" name="aid" value="<?=$aid?>">
                     <input type="hidden" name="num" id="num" value="<?=$num?>">
+                    <input name="_csrf" type="hidden" id="_csrf" value="<?= Yii::$app->request->csrfToken ?>">
                     <td colspan="5" class="text-right"><button type="submit" class="btn btn-success">确认购买</button></td>
                 </tr>
             </form>
@@ -93,7 +92,6 @@
         <?}?>
         </tbody>
     </table>
-</div>
 <script>
     //获取td标签
     var b    = document.getElementById('bbb');
