@@ -3,28 +3,29 @@
     <h3 class="text-warning text-left">订单详情</h3>
     </p>
     <br>
-<!--    订单部分 start-->
+    <!--    订单部分 start-->
     <table class="table" style="text-align: center">
         <thead>
         <tr class="bg-primary">
             <td>名称</td>
             <td>图片</td>
             <td>数量</td>
-            <td>价格</td>
+            <td>单价格</td>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td><?=$goods['name']?></td>
             <td><img style="width: 50px;height: 50px;" src="<?=Yii::$app->params['backUrl'].$goods['xthumb']?>"></td>
-            <td>共 1 件</td>
+            <td>共<button id="down" onclick="dj()"> - </button>&nbsp;<input style="width:30px;"  type="text" value="1" id="dbox">&nbsp;&nbsp;<button onclick="dz()">+</button>件</td>
+
             <td><?=$goods['shop_price']?></td>
         </tr>
         <tr>
             <td></td>
             <td></td>
-            <td>总计 ：</td>
-            <td>&yen; <?=$goods['shop_price']?></td>
+            <td></td>
+            <td id="bbb">总计 : &yen;<?=$goods['shop_price']?>元</td>
         </tr>
         <?php if(is_null($id)){?>
             <tr class="active">
@@ -38,7 +39,7 @@
         <?}else{?>
         </tbody>
     </table>
-<!--    订单结束-->
+    <!--    订单结束-->
     <hr>
     <p class="center-block">
     <h3 class="text-warning text-left">收货地址</h3>
@@ -55,16 +56,16 @@
         </thead>
         <tbody>
         <?php if(!$so){?>
-        <tr>
-            <td colspan="4">您还没有默认的收货地址&nbsp;&nbsp;  <a href="/persons/receipt-address/create.html"> (去添加）</a></td>
-        </tr>
+            <tr>
+                <td colspan="4">您还没有默认的收货地址&nbsp;&nbsp;  <a href="/persons/receipt-address/create.html"> (去添加）</a></td>
+            </tr>
             <tr>
                 <td colspan="4" class="text-right">
                     <button type="button" class="btn  btn-success" disabled="disabled">确认购买</button>
                 </td>
             </tr>
         <?php } else{?>
-            <?php foreach ($addr as $a){?>
+        <?php foreach ($addr as $a){?>
             <tr>
                 <td><?=$a['consignee']?></td>
                 <td><?=$a['telephone']?></td>
@@ -72,21 +73,48 @@
                 <td><?=$a['address']?></td>
                 <?php $aid = $a['id']?>
             </tr>
-            <?php }?>
+        <?php }?>
             <tr>
                 <td colspan="4" class="text-right"><a href="/persons/receipt-address/update.html?id=<?=$id?>">修改</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="">添加</a></td>
             </tr>
             <form action="" method="post">
-            <tr>
-                <input type="hidden" name="uid" value="<?=$id?>">
-                <input type="hidden" name="gid" value="<?=$gid?>">
-                <input type="hidden" name="aid" value="<?=$aid?>">
-                <input type="hidden" name="num" value="1">
-                <td colspan="4" class="text-right"><button type="submit" class="btn btn-success">确认购买</button></td>
-            </tr>
+                <tr>
+                    <input type="hidden" name="uid" value="<?=$id?>">
+                    <input type="hidden" name="gid" value="<?=$gid?>">
+                    <input type="hidden" name="aid" value="<?=$aid?>">
+                    <input type="hidden" name="num" id="num" value="1">
+                    <td colspan="4" class="text-right"><button type="submit" class="btn btn-success">确认购买</button></td>
+                </tr>
             </form>
         <?php }?>
         <?}?>
         </tbody>
     </table>
 </div>
+<script>
+    //获取td标签
+    var b    = document.getElementById('bbb');
+    //商品的单个价格
+    var pice = <?=$goods['shop_price']?>;
+    //隐藏表单的 num
+    var hidd = document.getElementById('num');
+    function dj(){
+        //获取数量的input标签
+        var a = document.getElementById('dbox');
+        if(parseInt(a.value) > 1){
+            a.value = parseInt(a.value) - 1;
+            hidd.value = a.value;
+            console.log(hidd.value);
+            var num =  a.value * pice;
+            b.innerHTML ='总计 &yen; '+ num +' 元';
+        }
+    }
+    function dz() {
+        var a = document.getElementById('dbox');
+        a.value = parseInt(a.value) + 1;
+        hidd.value = a.value;
+        console.log(hidd.value);
+        var num =  a.value * pice;
+        b.innerHTML ='总计 &yen; '+ num +' 元';
+    }
+</script>

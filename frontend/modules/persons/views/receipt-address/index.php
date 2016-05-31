@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'consignee',
             'telephone',
             'receipt',
-            // 'address',
+            'address',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
