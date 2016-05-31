@@ -20,6 +20,7 @@ class m160530_103055_order_goods extends Migration{
             'amount'=>$this->float(2)->notNull(),
             'add_time'=>$this->integer()->notNull(),
             'update_time'=>$this->integer()->notNull(),
+            'CONSTRAINT order_has_goods FOREIGN KEY (order_id) REFERENCES {{%order}} (id) ON DELETE CASCADE ON UPDATE CASCADE',
         ], $tableOptions);
     }
 
