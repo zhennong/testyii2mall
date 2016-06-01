@@ -65,7 +65,7 @@
                 </td>
             </tr>
         <?php } else{?>
-            <form action="/show/order/index.html" method="post">
+            <form action="/show/order/create.html" method="post">
         <?php foreach ($addr as $a){?>
             <tr>
                 <td><input  type="radio" name="receipt_id" checked="checked" value="<?=$a['id']?>"></td>
