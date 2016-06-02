@@ -30,7 +30,7 @@ $this->title = Yii::t('common','testyii2mall');
                 </tr>
                 <tr>
                     <td>商品数量:</td>
-                    <td><?=$goods['number']?></td>
+                    <td id="num"><?=$goods['number']?></td>
                 </tr>
                 <tr>
                     <td>选择数量：</td>
@@ -47,6 +47,7 @@ $this->title = Yii::t('common','testyii2mall');
      </div>
     <script>
         var url = document.getElementById('url');
+        var num = document.getElementById('num').textContent;
         //数量加减
         function dj(){
             //获取数量的input标签
@@ -59,25 +60,31 @@ $this->title = Yii::t('common','testyii2mall');
         }
         function dz() {
             var a = document.getElementById('dbox');
-            a.value = parseInt(a.value) + 1;
+            var av = parseInt(a.value);
+            var nv = parseInt(num);
+            if (av < nv){
+                a.value = av + 1;
+            }
+
             url.href = '';
             url.href = "/show/goods/buy.html?goods_id=<?=$goods['id']?>&num=" +a.value;
         }
         //加入购物车
         function Add(){
-            $.ajax({
-                url  : "/goods/goods/up-status.html",
-                type : 'post',
-                data : {'id':$(dom).attr('name')  , 'status':str},
-                datatype : "text",
-                complete: function(XMLHttpRequest, textStatus){
-                    alert(XMLHttpRequest.responseText);
-                },
-                //调用出错执行的函数
-                error: function(){
-                    alert('修改失败');
-                }
-            });
+            //console.log(num.textContent);
+//            $.ajax({
+//                url  : "/goods/goods/up-status.html",
+//                type : 'post',
+//                data : {'id':$(dom).attr('name')  , 'status':str},
+//                datatype : "text",
+//                complete: function(XMLHttpRequest, textStatus){
+//                    alert(XMLHttpRequest.responseText);
+//                },
+//                //调用出错执行的函数
+//                error: function(){
+//                    alert('修改失败');
+//                }
+//            });
         }
     </script>
 </div>
