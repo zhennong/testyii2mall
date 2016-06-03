@@ -102,8 +102,14 @@
     function dj(){
         //获取数量的input标签
         var a = document.getElementById('dbox');
-        if(parseInt(a.value) > 1){
-            a.value = parseInt(a.value) - 1;
+        var av = parseInt(a.value);
+        var gnum = <?=$gnum?>;
+        if(av > 1){
+            if (av > gnum){
+                a.value = 1;
+            }else{
+                a.value = av - 1;
+            }
             hidd.value = a.value;
             var num =  a.value * pice;
             b.innerHTML ='总计 &yen; '+ num +' 元';
@@ -115,6 +121,9 @@
         var gnum = <?=$gnum?>;
         if (av < gnum){
             a.value = av +1 ;
+            hidd.value = a.value;
+        }else{
+            a.value = gnum;
             hidd.value = a.value;
         }
         var num =  a.value * pice;

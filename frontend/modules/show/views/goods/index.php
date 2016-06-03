@@ -51,9 +51,15 @@ $this->title = Yii::t('common','testyii2mall');
         //数量加减
         function dj(){
             //获取数量的input标签
-            var a = document.getElementById('dbox');
-            if(parseInt(a.value) > 1){
-                a.value = parseInt(a.value) - 1;
+            var a  = document.getElementById('dbox');
+            var av = parseInt(a.value);
+            var nv = parseInt(num);
+            if(av > 1){
+                if(av > nv){
+                    a.value = 1;
+                }else{
+                    a.value = av - 1;
+                }
                 url.href = '';
                 url.href = "/show/goods/buy.html?goods_id=<?=$goods['id']?>&num=" +a.value;
             }
@@ -64,6 +70,8 @@ $this->title = Yii::t('common','testyii2mall');
             var nv = parseInt(num);
             if (av < nv){
                 a.value = av + 1;
+            }else{
+                a.value = nv;
             }
 
             url.href = '';
