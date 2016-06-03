@@ -28,6 +28,7 @@ class GoodsController extends Controller{
     public function actionBuy($goods_id,$num){
         $goods = Goods::findOne($goods_id);
         $id    = Yii::$app->user->id;
+        $gnum  = $goods->number;
         //取出收货信息
         $addr  = ReceiptAddress::find()->where(['uid'=>$id])->all();
         if (empty($addr)){
@@ -35,7 +36,7 @@ class GoodsController extends Controller{
         }else{
             $so = 1;
         }
-        return $this->render('buy',['goods'=>$goods,'id'=>$id, 'gid'=>$goods_id,'num'=>$num,'so'=>$so,'addr'=>$addr,]);
+        return $this->render('buy',['goods'=>$goods,'id'=>$id, 'gid'=>$goods_id,'num'=>$num,'gnum'=>$gnum,'so'=>$so,'addr'=>$addr,]);
     }
 
 

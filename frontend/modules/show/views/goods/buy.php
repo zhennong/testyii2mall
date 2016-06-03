@@ -110,9 +110,13 @@
         }
     }
     function dz() {
-        var a = document.getElementById('dbox');
-        a.value = parseInt(a.value) + 1;
-        hidd.value = a.value;
+        var a  = document.getElementById('dbox');
+        var av = parseInt(a.value);
+        var gnum = <?=$gnum?>;
+        if (av < gnum){
+            a.value = av +1 ;
+            hidd.value = a.value;
+        }
         var num =  a.value * pice;
         b.innerHTML ='总计 &yen; '+ num +' 元';
     }
